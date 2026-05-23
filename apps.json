@@ -1,0 +1,87 @@
+{
+  "_comment": "Static registry. serve.py merges this with live folder discovery. Entries with absolute URLs work in deployed/file:// mode too. Edit freely — add or remove anything.",
+  "apps": [
+    {
+      "id": "DDCS-Studio",
+      "name": "DDCS Studio",
+      "icon": "G",
+      "group": "cnc",
+      "description": "G-code generator for DDCS Expert M350",
+      "url": "https://ddcsstudio.workers.dev/"
+    },
+    {
+      "id": "b-spline-generator-web-addin",
+      "name": "B-Spline Generator",
+      "icon": "~",
+      "group": "cnc",
+      "description": "Bspline + frame builder + stamp editor",
+      "url": "https://bspline.workers.dev/"
+    },
+    {
+      "id": "SVG creator",
+      "name": "SVG Creator",
+      "icon": "S",
+      "group": "design",
+      "description": "Sketch and constraint editor",
+      "url": "https://svgcreator.workers.dev/"
+    },
+    {
+      "id": "geometric CALCULATOR",
+      "name": "Geometric Calculator",
+      "icon": "△",
+      "group": "calc",
+      "description": "Construction / geometry calc",
+      "url": "https://geometriccalculator.workers.dev/"
+    },
+    {
+      "id": "calculator",
+      "name": "Calculator",
+      "icon": "=",
+      "group": "calc",
+      "description": "Basic calculator",
+      "url": "https://constructioncalculator.workers.dev/"
+    },
+    {
+      "id": "path profile gen",
+      "name": "Path Profile",
+      "icon": "/",
+      "group": "cnc",
+      "description": "Path profile generator",
+      "url": "https://pathprofilegen.workers.dev/"
+    },
+    {
+      "id": "step generator",
+      "name": "STEP Generator",
+      "icon": "□",
+      "group": "design",
+      "description": "STEP file builder",
+      "url": "https://stepgenerator.workers.dev/"
+    },
+    {
+      "id": "unitconverter",
+      "name": "Unit Converter",
+      "icon": "↔",
+      "group": "calc",
+      "description": "Unit conversion",
+      "url": "https://unitconverter.workers.dev/"
+    },
+    {
+      "id": "pen-plotter",
+      "name": "Pen Plotter",
+      "icon": "✎",
+      "group": "wishlist",
+      "description": "Pen plotter simulator (planned)",
+      "wip": true,
+      "url": ""
+    },
+    {
+      "id": "calendar",
+      "name": "Calendar",
+      "icon": "▦",
+      "group": "wishlist",
+      "description": "Calendar (planned)",
+      "wip": true,
+      "url": ""
+    }
+  ]
+}

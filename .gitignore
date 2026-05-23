@@ -1,0 +1,9 @@
+.env
+.wrangler/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+desktop.ini
+debug_log.txt*
+.vscode/

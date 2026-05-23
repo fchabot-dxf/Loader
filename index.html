@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fred App</title>
+<link rel="stylesheet" href="loader.css" />
+</head>
+<body>
+  <aside id="sidebar">
+    <header id="brand">
+      <h1>Fred App</h1>
+      <div id="project-name" title="Click to rename">untitled project</div>
+    </header>
+    <nav id="app-list" aria-label="Apps"></nav>
+    <footer id="sidebar-footer">
+      <button id="reload-app" title="Reload current app">reload</button>
+      <button id="pop-out" title="Open current app in new tab">pop out</button>
+      <button id="open-setup" title="Manage apps and pin to home">setup</button>
+    </footer>
+  </aside>
+  <main id="stage">
+    <div id="welcome">
+      <h2>nothing pinned yet</h2>
+      <p>Click <strong>setup</strong> in the sidebar to add apps to the home screen.</p>
+      <p>Apps stay safe in the registry — pinning just controls what shows up here.</p>
+    </div>
+    <iframe id="app-frame" hidden allow="clipboard-read; clipboard-write; fullscreen"></iframe>
+    <section id="setup-view" hidden>
+      <header id="setup-header">
+        <h2>Setup</h2>
+        <div id="setup-status"></div>
+        <button id="setup-close" type="button">done</button>
+      </header>
+      <p class="setup-help">
+        Every app the loader has ever seen. Check the ones you want on the
+        home screen of <em>this PC</em>. Pinning is per-PC; deleting removes
+        the app from the registry everywhere.
+      </p>
+      <div id="setup-list"></div>
+      <footer id="setup-footer">
+        <button id="setup-save" type="button">save changes</button>
+        <button id="setup-discard" type="button">discard</button>
+        <span id="setup-dirty"></span>
+      </footer>
+    </section>
+    <!-- Inline registry: works when index.html is opened as a file:// (Chrome blocks fetch from disk). serve.py overrides this. -->
+    <script id="apps-inline" type="application/json">
+{
+  "apps": [
+    { "id": "DDCS-Studio", "name": "DDCS Studio", "icon": "G", "group": "cnc", "url": "https://ddcsstudio.workers.dev/" },
+    { "id": "b-spline-generator-web-addin", "name": "B-Spline Generator", "icon": "~", "group": "cnc", "url": "https://bspline.workers.dev/" },
+    { "id": "SVG creator", "name": "SVG Creator", "icon": "S", "group": "design", "url": "https://svgcreator.workers.dev/" },
+    { "id": "geometric CALCULATOR", "name": "Geometric Calculator", "icon": "T", "group": "calc", "url": "https://geometriccalculator.workers.dev/" },
+    { "id": "calculator", "name": "Construction Calc", "icon": "=", "group": "calc", "url": "https://constructioncalculator.workers.dev/" },
+    { "id": "path profile gen", "name": "Path Profile", "icon": "/", "group": "cnc", "url": "https://pathprofilegen.workers.dev/" },
+    { "id": "step generator", "name": "STEP Generator", "icon": "S", "group": "design", "url": "https://stepgenerator.workers.dev/" },
+    { "id": "unitconverter", "name": "Unit Converter", "icon": "U", "group": "calc", "url": "https://unitconverter.workers.dev/" },
+    { "id": "mathieuconnery", "name": "Mathieuconnery", "icon": "M", "group": "design", "url": "" },
+    { "id": "pen-plotter", "name": "Pen Plotter", "icon": "P", "group": "wishlist", "wip": true, "url": "" },
+    { "id": "calendar", "name": "Calendar", "icon": "C", "group": "wishlist", "wip": true, "url": "" }
+  ]
+}
+    </script>
+  </main>
+  <script src="js/01-state.js"></script>
+  <script src="js/02-pinned.js"></script>
+  <script src="js/03-project.js"></script>
+  <script src="js/04-welcome.js"></script>
+  <script src="js/05-registry.js"></script>
+  <script src="js/06-sidebar.js"></script>
+  <script src="js/07-app-open.js"></script>
+  <script src="js/08-handshake.js"></script>
+  <script src="js/09-broadcast.js"></script>
+  <script src="js/10-messages.js"></script>
+  <script src="js/11-setup-view.js"></script>
+  <script src="js/12-setup-row.js"></script>
+  <script src="js/13-setup-save.js"></script>
+  <script src="js/14-controls.js"></script>
+  <script src="js/15-main.js"></script>
+</body>
+</html>
