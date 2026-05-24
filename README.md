@@ -65,4 +65,15 @@ window.addEventListener("fredhost:ready", (e) => {
 
 Apps that don't include `fred-host.js` still load fine in the loader iframe — they just can't share state. **Loader-aware is opt-in, per app, one at a time.**
 
-Including `fred-host.js` also injects a small "← Fred App" pill bottom-left when the app is framed by the loader, so users can pop back to the launcher. Opt out per-app wit
+Including `fred-host.js` also injects a small "← Fred App" pill bottom-left when the app is framed by the loader, so users can pop back to the launcher. Opt out per-app with `<script src="fred-host.js" data-no-home-button defer>`.
+
+## Files
+
+| File           | What it is                                         |
+| -------------- | -------------------------------------------------- |
+| `index.html`   | Loader page                                        |
+| `loader.js`    | Sidebar, iframe management, handshake, project state |
+| `loader.css`   | Styling                                            |
+| `fred-host.js` | Adapter apps include to opt into loader integration |
+| `apps.json`    | Static registry                                    |
+| `serve.py`     | Local dev server with live folder discovery        |

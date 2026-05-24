@@ -157,3 +157,166 @@ body {
   border-radius: 3px;
   font-size: 12px;
 }
+
+#welcome strong {
+  color: var(--fg);
+}
+
+/* Setup view --------------------------------------------------------- */
+
+#setup-view {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+#setup-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+#setup-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+#setup-status {
+  flex: 1;
+  font-size: 12px;
+  color: var(--fg-dim);
+}
+
+#setup-close {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 4px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#setup-close:hover { border-color: var(--fg-dim); }
+
+.setup-help {
+  margin: 12px 24px;
+  font-size: 12px;
+  color: var(--fg-dim);
+  max-width: 640px;
+}
+
+#setup-list {
+  padding: 0 24px 24px;
+}
+
+.setup-group {
+  padding: 12px 0 4px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  border-bottom: 1px solid var(--border);
+}
+
+.setup-row {
+  display: grid;
+  grid-template-columns: 28px 24px 1.2fr 2fr 60px 90px 70px;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #2a2a2a;
+  font-size: 13px;
+}
+
+.setup-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.setup-row .icon-cell input,
+.setup-row .name-cell input,
+.setup-row .url-cell input,
+.setup-row .group-cell input {
+  width: 100%;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 3px 6px;
+  font: inherit;
+  border-radius: 3px;
+}
+
+.setup-row .icon-cell input { text-align: center; }
+
+.setup-row .badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 9px;
+  color: var(--fg-dim);
+  text-align: center;
+}
+
+.setup-row .badge.local { background: #1c3a1c; color: #8cd08c; }
+.setup-row .badge.remote { background: #2a2a3a; color: #8c9cd0; }
+
+.setup-row .delete {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg-dim);
+  padding: 3px 8px;
+  font-size: 11px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.setup-row .delete:hover { border-color: #d06c6c; color: #d06c6c; }
+
+#setup-footer {
+  position: sticky;
+  bottom: 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#setup-footer button {
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#setup-footer button:hover { border-color: var(--fg-dim); }
+
+#setup-save {
+  background: #2a4a6a !important;
+  border-color: #3a5a7a !important;
+}
+
+#setup-save:hover { background: #345580 !important; }
+
+#setup-dirty {
+  margin-left: auto;
+  font-size: 12px;
+  color: #d0a86c;
+}
+
+.setup-row.add-new {
+  background: rgba(108, 182, 255, 0.04);
+}
+
