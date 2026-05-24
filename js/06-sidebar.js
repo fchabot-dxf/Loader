@@ -1,19 +1,19 @@
-// Render the home sidebar: only pinned apps, grouped by `group` field.
+// Render the home sidebar: all non-hidden apps, grouped by `group` field.
 Fred.renderSidebar = function () {
   const list = document.getElementById("app-list");
   list.innerHTML = "";
-  const pinned = Fred.state.apps.filter(a => Fred.isPinned(a.id) && !a.hidden);
+  const visible = Fred.state.apps.filter(a => !a.hidden);
 
-  if (pinned.length === 0) {
+  if (visible.length === 0) {
     const hint = document.createElement("div");
     hint.className = "app-group";
     hint.style.cssText = "padding:16px 14px;color:var(--fg-dim);text-transform:none;letter-spacing:0;font-size:12px;";
-    hint.textContent = "no apps pinned. click setup below.";
+    hint.textContent = "no apps in registry. click setup to add one.";
     list.appendChild(hint);
     return;
   }
   const groups = new Map();
-  for (const app of pinned) {
+  for (const app of visible) {
     const g = app.group || "apps";
     if (!groups.has(g)) groups.set(g, []);
     groups.get(g).push(app);

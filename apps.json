@@ -7,7 +7,7 @@
       "icon": "G",
       "group": "cnc",
       "description": "G-code generator for DDCS Expert M350",
-      "url": "https://ddcsstudio.workers.dev/",
+      "url": "https://ddcsexpertstudio.pages.dev/",
       "local": false
     },
     {
@@ -16,7 +16,7 @@
       "icon": "~",
       "group": "cnc",
       "description": "Bspline + frame builder + stamp editor",
-      "url": "https://bspline.workers.dev/",
+      "url": "https://symmetric-b-spline-gen.pages.dev/",
       "local": false
     },
     {
@@ -25,7 +25,7 @@
       "icon": "S",
       "group": "design",
       "description": "Sketch and constraint editor",
-      "url": "https://svgcreator.workers.dev/",
+      "url": "https://svgcreator.pages.dev/",
       "local": true,
       "localUrl": "/apps/SVG%20creator/index.html",
       "folder": "SVG creator",
@@ -37,7 +37,7 @@
       "icon": "△",
       "group": "calc",
       "description": "Construction / geometry calc",
-      "url": "https://geometriccalculator.workers.dev/",
+      "url": "https://geometriccalculator.pages.dev/",
       "local": true,
       "localUrl": "/apps/geometric%20CALCULATOR/src/index.html",
       "folder": "geometric CALCULATOR",
@@ -45,35 +45,23 @@
     },
     {
       "id": "calculator",
-      "name": "Calculator",
+      "name": "Construction Calc",
       "icon": "=",
       "group": "calc",
-      "description": "Basic calculator",
-      "url": "https://constructioncalculator.workers.dev/",
+      "description": "Construction calculator",
+      "url": "https://constructioncalculator.pages.dev/",
       "local": true,
       "localUrl": "/apps/calculator/dist/index.html",
       "folder": "calculator",
       "entry": "dist/index.html"
     },
     {
-      "id": "path profile gen",
-      "name": "Path Profile",
-      "icon": "/",
-      "group": "cnc",
-      "description": "Path profile generator",
-      "url": "https://pathprofilegen.workers.dev/",
-      "local": true,
-      "localUrl": "/apps/path%20profile%20gen/index.html",
-      "folder": "path profile gen",
-      "entry": "index.html"
-    },
-    {
-      "id": "step generator",
-      "name": "STEP Generator",
-      "icon": "□",
+      "id": "step-editor",
+      "name": "STEP Editor",
+      "icon": "✎",
       "group": "design",
-      "description": "STEP file builder",
-      "url": "https://stepgenerator.workers.dev/",
+      "description": "STEP file editor",
+      "url": "https://step-editor.pages.dev/",
       "local": false
     },
     {
@@ -82,7 +70,7 @@
       "icon": "↔",
       "group": "calc",
       "description": "Unit conversion",
-      "url": "https://unitconverter.workers.dev/",
+      "url": "https://unitsconverter.pages.dev/",
       "local": true,
       "localUrl": "/apps/unitconverter/dist/index.html",
       "folder": "unitconverter",
@@ -91,21 +79,46 @@
     {
       "id": "pen-plotter",
       "name": "Pen Plotter",
-      "icon": "✎",
-      "group": "wishlist",
-      "description": "Pen plotter simulator (planned)",
-      "wip": true,
-      "url": "",
+      "icon": "✏",
+      "group": "cnc",
+      "description": "Pen plotter palettes + projects",
+      "url": "https://penplotter.pages.dev/",
       "local": false
     },
     {
       "id": "calendar",
-      "name": "Calendar",
+      "name": "Calendrier de prod",
       "icon": "▦",
-      "group": "wishlist",
-      "description": "Calendar (planned)",
-      "wip": true,
-      "url": "",
+      "group": "apps",
+      "description": "Production calendar",
+      "url": "https://calendrier-de-prod.pages.dev/",
+      "local": false
+    },
+    {
+      "id": "speed-o-meter",
+      "name": "Speed-O-Meter",
+      "icon": "⏱",
+      "group": "calc",
+      "description": "Speed / feed calculator",
+      "url": "https://speed-o-meter.pages.dev/",
+      "local": false
+    },
+    {
+      "id": "sketch-studio",
+      "name": "Sketch Studio",
+      "icon": "✐",
+      "group": "design",
+      "description": "Fusion sketch environment emulator (constraints, snaps, dims)",
+      "url": "https://sketch-studio.pages.dev/",
+      "local": false
+    },
+    {
+      "id": "quiz-francais",
+      "name": "Quiz Français",
+      "icon": "?",
+      "group": "apps",
+      "description": "French quiz",
+      "url": "https://quiz-francais.pages.dev/",
       "local": false
     },
     {
@@ -113,47 +126,12 @@
       "name": "Mathieuconnery",
       "icon": "•",
       "group": "apps",
-      "url": "",
+      "description": "Outline system",
+      "url": "https://mathieuconnery.pages.dev/",
       "localUrl": "/apps/mathieuconnery/index.html",
       "folder": "mathieuconnery",
       "entry": "index.html",
       "local": true
-    },
-    {
-      "id": "ddcs_studio_v9_49",
-      "name": "Ddcs Studio V9 49",
-      "icon": "•",
-      "group": "apps",
-      "url": "",
-      "localUrl": "/apps/ddcs_studio_v9_49.html",
-      "folder": "",
-      "entry": "ddcs_studio_v9_49.html",
-      "local": true,
-      "loose": true
-    },
-    {
-      "id": "hello world ddcs_studio_v9_49 - Copy",
-      "name": "Hello World Ddcs Studio V9 49 Copy",
-      "icon": "•",
-      "group": "apps",
-      "url": "",
-      "localUrl": "/apps/hello%20world%20ddcs_studio_v9_49%20-%20Copy.html",
-      "folder": "",
-      "entry": "hello world ddcs_studio_v9_49 - Copy.html",
-      "local": true,
-      "loose": true
-    },
-    {
-      "id": "sketch-studio-unified-v1.0",
-      "name": "Sketch Studio Unified V1.0",
-      "icon": "•",
-      "group": "apps",
-      "url": "",
-      "localUrl": "/apps/sketch-studio-unified-v1.0.html",
-      "folder": "",
-      "entry": "sketch-studio-unified-v1.0.html",
-      "local": true,
-      "loose": true
     }
   ]
 }

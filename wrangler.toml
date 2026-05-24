@@ -1,0 +1,20 @@
+# Cloudflare Pages deploy for the Fred App loader.
+#
+# Deploy:
+#   python deployCLOUDFLARE.py
+#
+# Result: https://loader.pages.dev/
+#
+# The deploy script stages only the runtime files into ./_pages_build/
+# (so serve.py, README.md, the superseded loader.js/loader2.js, .git, etc.
+# never get uploaded) and then runs `wrangler pages deploy` against the
+# stage dir.
+#
+# Edits to apps.json after deploy: re-run python deployCLOUDFLARE.py.
+# The POST /apps.json endpoint in serve.py is local-dev only; in deployed
+# mode, setup-view edits live in the browser's localStorage as a per-PC
+# override on top of the static registry.
+
+name = "loader"
+pages_build_output_dir = "./_pages_build"
+compatibility_date = "2025-05-01"

@@ -1,0 +1,21 @@
+# Files NOT shipped to Cloudflare. Same syntax as .gitignore.
+# Wrangler skips these when building the static-asset bundle.
+
+# Local dev server — not needed in deploy
+serve.py
+deployCLOUDFLARE.py
+
+# Superseded monoliths (live code lives in js/NN-*.js now)
+loader.js
+loader2.js
+
+# Repo metadata
+.git/
+.gitignore
+README.md
+
+# Wrangler artifacts
+wrangler.toml
+.assetsignore
+.wrangler/
+node_modules/

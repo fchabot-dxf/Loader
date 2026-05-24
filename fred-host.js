@@ -133,6 +133,8 @@
   }, READY_TIMEOUT_MS);
 
   /* -----  home button (auto-on, opt-out per app)  ----- */
+  // Small translucent circular icon, bottom-left. Click → return to loader.
+  // Opt out per-app with `data-no-home-button` on the script tag.
   function maybeInjectHomeButton() {
     const tag = document.currentScript ||
                 document.querySelector('script[src*="fred-host.js"]');
@@ -142,27 +144,45 @@
     const btn = document.createElement("button");
     btn.id = "fred-home-pill";
     btn.type = "button";
-    btn.textContent = "← Fred App";
-    btn.title = "Back to Fred App launcher";
+    btn.title = "Back to Loader";
+    btn.setAttribute("aria-label", "Back to Loader");
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" ' +
+      'stroke="currentColor" stroke-width="2" stroke-linecap="round" ' +
+      'stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M3 12l9-9 9 9"/>' +
+      '<path d="M5 10v10h14V10"/>' +
+      '<path d="M9 21V14h6v7"/>' +
+      "</svg>";
     btn.style.cssText = [
       "position:fixed",
       "left:12px",
       "bottom:12px",
       "z-index:2147483647",
-      "padding:6px 10px",
-      "font:12px -apple-system,Segoe UI,system-ui,sans-serif",
-      "color:#e8e8e8",
-      "background:rgba(35,35,35,0.92)",
-      "border:1px solid #444",
-      "border-radius:14px",
+      "width:34px",
+      "height:34px",
+      "padding:0",
+      "display:inline-flex",
+      "align-items:center",
+      "justify-content:center",
+      "color:#fff",
+      "background:rgba(20,20,20,0.35)",
+      "border:1px solid rgba(255,255,255,0.18)",
+      "border-radius:50%",
       "cursor:pointer",
-      "box-shadow:0 2px 8px rgba(0,0,0,0.35)",
+      "backdrop-filter:blur(6px)",
+      "-webkit-backdrop-filter:blur(6px)",
+      "box-shadow:0 2px 8px rgba(0,0,0,0.25)",
+      "opacity:0.55",
+      "transition:opacity 120ms ease, background 120ms ease",
     ].join(";");
     btn.addEventListener("mouseenter", () => {
-      btn.style.background = "rgba(58,58,58,0.95)";
+      btn.style.opacity = "1";
+      btn.style.background = "rgba(40,40,40,0.65)";
     });
     btn.addEventListener("mouseleave", () => {
-      btn.style.background = "rgba(35,35,35,0.92)";
+      btn.style.opacity = "0.55";
+      btn.style.background = "rgba(20,20,20,0.35)";
     });
     btn.addEventListener("click", () => post({ type: "go-home" }));
 

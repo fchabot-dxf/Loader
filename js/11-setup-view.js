@@ -2,7 +2,6 @@
 Fred.openSetup = function () {
   Fred.state.setupDraft = {
     apps: Fred.state.apps.map(a => ({ ...a })),
-    pinned: new Set(Fred.state.pinned),
   };
   document.getElementById("welcome").hidden = true;
   document.getElementById("app-frame").hidden = true;

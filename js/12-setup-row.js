@@ -1,19 +1,8 @@
-// One row in the setup view: pin checkbox + editable fields + delete/add button.
+// One row in the setup view: editable fields + delete/add button.
 Fred.makeSetupRow = function (app) {
   const row = document.createElement("div");
   row.className = "setup-row";
   if (app._isAddNew) row.classList.add("add-new");
-
-  const pin = document.createElement("input");
-  pin.type = "checkbox";
-  pin.checked = !app._isAddNew && Fred.state.setupDraft.pinned.has(app.id);
-  pin.disabled = !!app._isAddNew;
-  pin.addEventListener("change", () => {
-    if (pin.checked) Fred.state.setupDraft.pinned.add(app.id);
-    else Fred.state.setupDraft.pinned.delete(app.id);
-    Fred.updateSetupDirty();
-  });
-  row.appendChild(pin);
 
   const inputs = {};
   const fields = [
@@ -72,7 +61,6 @@ Fred.makeDeleteButton = function (app) {
   btn.addEventListener("click", () => {
     if (!confirm('Remove "' + (app.name || app.id) + '" from the registry?')) return;
     Fred.state.setupDraft.apps = Fred.state.setupDraft.apps.filter(a => a.id !== app.id);
-    Fred.state.setupDraft.pinned.delete(app.id);
     Fred.renderSetup(); Fred.updateSetupDirty();
   });
   return btn;

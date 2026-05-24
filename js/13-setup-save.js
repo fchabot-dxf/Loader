@@ -7,9 +7,6 @@ Fred.updateSetupDirty = function () {
 
 Fred.setupIsDirty = function () {
   if (!Fred.state.setupDraft) return false;
-  const a = [...Fred.state.pinned].sort().join(",");
-  const b = [...Fred.state.setupDraft.pinned].sort().join(",");
-  if (a !== b) return true;
   if (Fred.state.apps.length !== Fred.state.setupDraft.apps.length) return true;
   for (let i = 0; i < Fred.state.apps.length; i++) {
     if (JSON.stringify(Fred.state.apps[i]) !== JSON.stringify(Fred.state.setupDraft.apps[i])) {
@@ -21,8 +18,6 @@ Fred.setupIsDirty = function () {
 
 Fred.saveSetup = async function () {
   if (!Fred.state.setupDraft) return;
-  Fred.state.pinned = new Set(Fred.state.setupDraft.pinned);
-  Fred.savePinned();
   const payload = { apps: Fred.state.setupDraft.apps };
 
   if (Fred.state.hasServer) {

@@ -11,6 +11,12 @@
 
 * { box-sizing: border-box; }
 
+/* Make the `hidden` HTML attribute actually hide elements that have an
+   explicit `display:` rule below (welcome, app-frame, setup-view). Without
+   this, those rules win over the UA `[hidden]{display:none}` default and
+   the panels stack on top of each other. */
+[hidden] { display: none !important; }
+
 html, body {
   margin: 0;
   height: 100%;
@@ -34,9 +40,66 @@ body {
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  transition: width 220ms ease, border-right-color 220ms ease;
 }
 
+/* Drawer-collapsed state: sidebar slides shut, stage takes whole screen. */
+body.sidebar-collapsed #sidebar {
+  width: 0;
+  border-right-color: transparent;
+}
+
+/* Collapse handle inside the sidebar header (visible when sidebar is open). */
+#sidebar-collapse {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--fg-dim);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+#sidebar-collapse:hover { color: var(--fg); border-color: var(--border); }
+
+/* Floating handle to re-open the sidebar (only visible when collapsed). */
+#sidebar-open {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  width: 32px;
+  height: 32px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 30, 30, 0.55);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.55;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: opacity 120ms ease, background 120ms ease;
+}
+#sidebar-open:hover { opacity: 1; background: rgba(45, 45, 45, 0.7); }
+body.sidebar-collapsed #sidebar-open { display: inline-flex; }
+
 #brand {
+  position: relative;
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
 }

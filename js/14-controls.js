@@ -1,5 +1,22 @@
-// Bind sidebar footer buttons + project-name rename.
+// Sidebar collapse state — persisted per-PC.
+Fred.SIDEBAR_KEY = "fred:sidebar-collapsed";
+Fred.applySidebarCollapsed = function (collapsed) {
+  document.body.classList.toggle("sidebar-collapsed", !!collapsed);
+};
+
+// Bind sidebar footer buttons + project-name rename + drawer toggle.
 Fred.bindControls = function () {
+  // Restore sidebar state on boot.
+  Fred.applySidebarCollapsed(localStorage.getItem(Fred.SIDEBAR_KEY) === "1");
+  document.getElementById("sidebar-collapse").addEventListener("click", () => {
+    Fred.applySidebarCollapsed(true);
+    localStorage.setItem(Fred.SIDEBAR_KEY, "1");
+  });
+  document.getElementById("sidebar-open").addEventListener("click", () => {
+    Fred.applySidebarCollapsed(false);
+    localStorage.setItem(Fred.SIDEBAR_KEY, "0");
+  });
+
   document.getElementById("project-name").addEventListener("click", () => {
     const next = prompt("Project name:", Fred.state.project.name || "");
     if (next != null) {

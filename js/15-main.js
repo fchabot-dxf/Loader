@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   Fred.renderSidebar();
   Fred.renderProjectName();
   const last = localStorage.getItem(Fred.LAST_APP_KEY);
-  if (last && Fred.isPinned(last) && Fred.state.apps.find(a => a.id === last)) {
+  if (last && Fred.state.apps.find(a => a.id === last && !a.hidden)) {
     Fred.openApp(last);
   }
 });
