@@ -9,7 +9,7 @@
 <body>
   <aside id="sidebar">
     <header id="brand">
-      <button id="sidebar-collapse" type="button" title="Hide sidebar" aria-label="Hide sidebar">‹</button>
+      <button id="sidebar-collapse" type="button" title="Toggle sidebar" aria-label="Toggle sidebar">‹</button>
       <h1>Loader</h1>
       <div id="project-name" title="Click to rename">untitled project</div>
     </header>
@@ -20,7 +20,17 @@
       <button id="open-setup" title="Add, edit, or remove apps">setup</button>
     </footer>
   </aside>
-  <button id="sidebar-open" type="button" title="Show sidebar" aria-label="Show sidebar">≡</button>
+
+  <!-- Mobile: slim top bar shown when an app is open -->
+  <div id="mobile-topbar">
+    <button id="mobile-back" aria-label="Back to app grid">←</button>
+    <span id="mobile-appname"></span>
+    <button id="mobile-setup-btn" aria-label="Setup">⋯</button>
+  </div>
+
+  <!-- Mobile: full-screen app grid (home screen) -->
+  <div id="mobile-grid" aria-label="Apps"></div>
+
   <main id="stage">
     <div id="welcome">
       <h2>select an app</h2>
@@ -44,23 +54,23 @@
         <span id="setup-dirty"></span>
       </footer>
     </section>
-    <!-- Inline registry: works when index.html is opened as a file:// (Chrome blocks fetch from disk). serve.py overrides this. -->
+    <!-- Inline registry fallback for file:// mode -->
     <script id="apps-inline" type="application/json">
 {
   "apps": [
-    { "id": "DDCS-Studio", "name": "DDCS Studio", "icon": "G", "group": "cnc", "url": "https://ddcsexpertstudio.pages.dev/" },
-    { "id": "b-spline-generator-web-addin", "name": "B-Spline Generator", "icon": "~", "group": "cnc", "url": "https://symmetric-b-spline-gen.pages.dev/" },
-    { "id": "SVG creator", "name": "SVG Creator", "icon": "S", "group": "design", "url": "https://svgcreator.pages.dev/" },
-    { "id": "geometric CALCULATOR", "name": "Geometric Calculator", "icon": "△", "group": "calc", "url": "https://geometriccalculator.pages.dev/" },
-    { "id": "calculator", "name": "Construction Calc", "icon": "=", "group": "calc", "url": "https://constructioncalculator.pages.dev/" },
-    { "id": "step-editor", "name": "STEP Editor", "icon": "✎", "group": "design", "url": "https://step-editor.pages.dev/" },
-    { "id": "unitconverter", "name": "Unit Converter", "icon": "↔", "group": "calc", "url": "https://unitsconverter.pages.dev/" },
-    { "id": "pen-plotter", "name": "Pen Plotter", "icon": "✏", "group": "cnc", "url": "https://penplotter.pages.dev/" },
-    { "id": "calendar", "name": "Calendrier de prod", "icon": "▦", "group": "apps", "url": "https://calendrier-de-prod.pages.dev/" },
-    { "id": "speed-o-meter", "name": "Speed-O-Meter", "icon": "⏱", "group": "calc", "url": "https://speed-o-meter.pages.dev/" },
-    { "id": "sketch-studio", "name": "Sketch Studio", "icon": "✐", "group": "design", "url": "https://sketch-studio.pages.dev/" },
-    { "id": "quiz-francais", "name": "Quiz Français", "icon": "?", "group": "apps", "url": "https://quiz-francais.pages.dev/" },
-    { "id": "mathieuconnery", "name": "Mathieuconnery", "icon": "•", "group": "apps", "url": "https://mathieuconnery.pages.dev/" }
+    { "id": "DDCS-Studio",                    "name": "DDCS Studio",         "icon": "G", "group": "cnc",    "url": "https://ddcsexpertstudio.pages.dev/" },
+    { "id": "b-spline-generator-web-addin",   "name": "B-Spline Generator",  "icon": "~", "group": "cnc",    "url": "https://symmetric-b-spline-gen.pages.dev/" },
+    { "id": "SVG creator",                    "name": "SVG Creator",         "icon": "S", "group": "design", "url": "https://svgcreator.pages.dev/" },
+    { "id": "geometric CALCULATOR",           "name": "Geometric Calculator","icon": "△", "group": "calc",   "url": "https://geometriccalculator.pages.dev/" },
+    { "id": "calculator",                     "name": "Construction Calc",   "icon": "=", "group": "calc",   "url": "https://constructioncalculator.pages.dev/" },
+    { "id": "step-editor",                    "name": "STEP Editor",         "icon": "✎", "group": "design", "url": "https://step-editor.pages.dev/" },
+    { "id": "unitconverter",                  "name": "Unit Converter",      "icon": "↔", "group": "calc",   "url": "https://unitsconverter.pages.dev/" },
+    { "id": "pen-plotter",                    "name": "Pen Plotter",         "icon": "✏", "group": "cnc",    "url": "https://penplotter.pages.dev/" },
+    { "id": "calendar",                       "name": "Calendrier de prod",  "icon": "▦", "group": "apps",   "url": "https://calendrier-de-prod.pages.dev/" },
+    { "id": "speed-o-meter",                  "name": "Speed-O-Meter",       "icon": "⏱", "group": "calc",   "url": "https://speed-o-meter.pages.dev/" },
+    { "id": "sketch-studio",                  "name": "Sketch Studio",       "icon": "✐", "group": "design", "url": "https://sketch-studio.pages.dev/" },
+    { "id": "quiz-francais",                  "name": "Quiz Français",       "icon": "?", "group": "apps",   "url": "https://quiz-francais.pages.dev/" },
+    { "id": "mathieuconnery",                 "name": "Mathieuconnery",      "icon": "•", "group": "apps",   "url": "https://mathieuconnery.pages.dev/" }
   ]
 }
     </script>
@@ -70,6 +80,7 @@
   <script src="js/03-project.js"></script>
   <script src="js/04-welcome.js"></script>
   <script src="js/05-registry.js"></script>
+  <script src="js/icons.js"></script>
   <script src="js/06-sidebar.js"></script>
   <script src="js/07-app-open.js"></script>
   <script src="js/08-handshake.js"></script>
