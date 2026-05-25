@@ -656,3 +656,235 @@ body.sidebar-collapsed #open-setup {
   .setup-row .url-cell,
   .setup-row .badge { display: none; }
 }
+
+/* ================================================================
+   EDIT MODE  (iOS-style jiggle)
+   ================================================================ */
+
+@keyframes edit-wobble {
+  0%   { transform: rotate(-1.8deg) translateZ(0); }
+  100% { transform: rotate( 1.8deg) translateZ(0); }
+}
+
+/* Wobble every visible app item */
+body.edit-mode .app-item {
+  animation: edit-wobble 0.30s ease-in-out infinite alternate;
+  cursor: grab;
+}
+body.edit-mode .app-item:active { cursor: grabbing; }
+
+/* Suppress wobble while dragging */
+body.edit-mode .app-item.dragging {
+  opacity: 0.35;
+  animation: none;
+}
+
+/* Drop-position indicator bars */
+body.edit-mode .app-item.drop-before {
+  box-shadow: 0 -2px 0 0 var(--accent);
+}
+body.edit-mode .app-item.drop-after {
+  box-shadow: 0 2px 0 0 var(--accent);
+}
+
+/* Delete badge (red circle with x) */
+.edit-delete {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #c42b1c;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 0;
+  animation: none;          /* never wobbles itself */
+  transform: none;
+  transition: transform 100ms;
+  font-family: inherit;
+}
+.edit-delete:hover { transform: scale(1.25); }
+
+/* Section header + button */
+.app-group { position: relative; }
+
+.group-add {
+  float: right;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-top: 1px;
+  font-family: inherit;
+  transition: background 120ms, transform 120ms;
+}
+.group-add:hover {
+  background: var(--accent-hover);
+  transform: scale(1.15);
+}
+
+/* "edit" button turns blue / "done" in edit mode */
+body.edit-mode #open-edit {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+body.edit-mode #open-edit:hover {
+  background: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+/* "cancel" inherits footer button look; shown only in edit mode */
+#edit-cancel {
+  color: #d08030 !important;
+  border-color: rgba(208, 128, 48, 0.4) !important;
+}
+#edit-cancel:hover {
+  background: rgba(208, 128, 48, 0.08) !important;
+  border-color: #d08030 !important;
+  color: #d08030 !important;
+}
+
+/* ── Library panel ────────────────────────────────────────────────────── */
+#library-panel {
+  position: fixed;
+  left: calc(var(--sidebar-w) + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 268px;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+  z-index: 600;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+}
+
+.lib-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.lib-header em { font-style: normal; color: var(--accent); }
+
+.lib-close {
+  background: transparent;
+  border: none;
+  color: var(--fg-dim);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 120ms;
+  font-family: inherit;
+}
+.lib-close:hover { color: var(--fg); }
+
+.lib-body {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+.lib-empty {
+  padding: 20px 14px;
+  font-size: 12px;
+  color: var(--fg-dim);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.lib-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  transition: background 120ms;
+}
+.lib-row:last-child { border-bottom: none; }
+.lib-row:hover { background: var(--bg-hover); }
+
+.lib-icon {
+  width: 28px; height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lib-icon svg {
+  width: 28px; height: 28px;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.lib-name {
+  flex: 1;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lib-add {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 120ms;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.lib-add:hover { background: var(--accent-hover); }
+
+/* ── Mobile tile jiggle ───────────────────────────────────────────────── */
+body.edit-mode .mobile-tile {
+  animation: edit-wobble 0.30s ease-in-out infinite alternate;
+  position: relative;
+}
+body.edit-mode .mobile-tile.dragging { opacity: 0.35; animation: none; }
+
+/* Library panel on mobile: anchor to bottom instead of sidebar edge */
+@media (max-width: 768px) {
+  #library-panel {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    top: auto;
+    bottom: 16px;
+    transform: none;
+    max-height: 55vh;
+  }
+}

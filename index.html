@@ -17,7 +17,8 @@
     <footer id="sidebar-footer">
       <button id="reload-app" title="Reload current app">reload</button>
       <button id="pop-out" title="Open current app in new tab">pop out</button>
-      <button id="open-setup" title="Add, edit, or remove apps">setup</button>
+      <button id="edit-cancel" title="Cancel edits" hidden>cancel</button>
+      <button id="open-edit" title="Edit app layout">edit</button>
     </footer>
   </aside>
 
@@ -30,6 +31,9 @@
 
   <!-- Mobile: full-screen app grid (home screen) -->
   <div id="mobile-grid" aria-label="Apps"></div>
+
+  <!-- Library overlay: hidden apps available to re-add in edit mode -->
+  <div id="library-panel" hidden></div>
 
   <main id="stage">
     <div id="welcome">
@@ -84,6 +88,7 @@
   <script src="js/11-setup-view.js"></script>
   <script src="js/12-setup-row.js"></script>
   <script src="js/13-setup-save.js"></script>
+  <script src="js/16-edit-mode.js"></script>
   <script src="js/14-controls.js"></script>
   <script src="js/15-main.js"></script>
 </body>
