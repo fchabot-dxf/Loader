@@ -57,17 +57,22 @@ Fred.ICONS = {
     <text x="17" y="61.5" font-size="2.2" fill="#569cd6" font-family="monospace">G-Code · Ln 4</text>
   </svg>`,
 
-  // 3D terrain mesh — warm ochre surface, white grid viewport, axis labels
+  // 3D terrain mesh — real screenshot of the app embedded as raster art
   "b-spline-generator-web-addin": `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <!-- App window: white background -->
+    <!-- App window chrome -->
     <rect width="64" height="64" rx="4" fill="#f5f5f5"/>
+    <!-- Terrain photo embedded as raster — real screenshot of app viewport -->
+    <clipPath id="vp"><rect x="21" y="9" width="43" height="55" rx="0"/></clipPath>
+    <image x="21" y="9" width="43" height="55" preserveAspectRatio="xMidYMid slice" clip-path="url(#vp)"
+      href="data:image/jpeg;base64,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"/>
+    <!-- Title bar overlay -->
     <rect width="64" height="9" rx="4" fill="#e8e8e8"/>
     <rect y="5" width="64" height="4" fill="#e8e8e8"/>
     <circle cx="5" cy="4.5" r="1.8" fill="#ff5f57"/>
     <circle cx="10" cy="4.5" r="1.8" fill="#ffbd2e"/>
     <circle cx="15" cy="4.5" r="1.8" fill="#28c940"/>
     <text x="35" y="7" text-anchor="middle" font-size="3.5" fill="#1a6aff" font-family="sans-serif" font-weight="bold">B-SPLINE GENERATOR</text>
-    <!-- Left panel -->
+    <!-- Left panel overlay (drawn on top of photo) -->
     <rect x="0" y="9" width="21" height="55" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
     <rect x="0" y="57" width="21" height="7" rx="4" fill="#fff"/>
     <rect x="1" y="11" width="19" height="5" rx="2" fill="#28c940"/>
@@ -77,65 +82,12 @@ Fred.ICONS = {
     <rect x="11" y="18" width="8" height="3.5" rx="1" fill="#fff" stroke="#bbb" stroke-width="0.5"/>
     <text x="15" y="21" text-anchor="middle" font-size="2.3" fill="#333" font-family="sans-serif">Redo</text>
     <text x="2" y="27" font-size="2.3" fill="#999" font-family="sans-serif" font-weight="bold">DIMENSIONS</text>
-    <text x="2" y="32" font-size="2.3" fill="#333" font-family="sans-serif">Width  7</text>
-    <text x="2" y="36.5" font-size="2.3" fill="#333" font-family="sans-serif">Height  9</text>
+    <text x="2" y="32" font-size="2.3" fill="#333" font-family="sans-serif">Width  8</text>
+    <text x="2" y="36.5" font-size="2.3" fill="#333" font-family="sans-serif">Height  13</text>
     <text x="2" y="41" font-size="2.3" fill="#333" font-family="sans-serif">Depth  1.5</text>
     <text x="2" y="49" font-size="2.3" fill="#555" font-family="sans-serif">▶ SEED</text>
     <text x="2" y="53" font-size="2.3" fill="#555" font-family="sans-serif">▶ SKELETON</text>
     <text x="2" y="57" font-size="2.3" fill="#555" font-family="sans-serif">▶ FILTER</text>
-    <!-- 3D viewport: white background with grid -->
-    <rect x="21" y="9" width="43" height="55" fill="#ffffff"/>
-    <rect x="21" y="57" width="43" height="7" rx="4" fill="#ffffff"/>
-    <!-- Isometric grid lines (perspective view) -->
-    <!-- Horizontal grid lines (rows going into perspective) -->
-    <line x1="22" y1="55" x2="63" y2="55" stroke="#d8d8d8" stroke-width="0.5"/>
-    <line x1="22" y1="50" x2="63" y2="50" stroke="#d8d8d8" stroke-width="0.4"/>
-    <line x1="22" y1="45" x2="63" y2="45" stroke="#d8d8d8" stroke-width="0.4"/>
-    <line x1="22" y1="40" x2="63" y2="40" stroke="#d8d8d8" stroke-width="0.4"/>
-    <!-- Vertical grid lines (columns) -->
-    <line x1="27" y1="40" x2="27" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
-    <line x1="33" y1="40" x2="33" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
-    <line x1="39" y1="40" x2="39" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
-    <line x1="45" y1="40" x2="45" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
-    <line x1="51" y1="40" x2="51" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
-    <line x1="57" y1="40" x2="57" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
-    <!-- Wavy terrain surface — ochre/golden fill polygons -->
-    <!-- Bottom row (flat base) -->
-    <polygon points="22,55 27,55 27,52 22,52" fill="#c8940a" opacity="0.7"/>
-    <polygon points="27,55 33,55 33,50 27,52" fill="#d4a020" opacity="0.8"/>
-    <polygon points="33,55 39,55 39,51 33,50" fill="#b87c08" opacity="0.8"/>
-    <polygon points="39,55 45,55 45,52 39,51" fill="#d4a020" opacity="0.8"/>
-    <polygon points="45,55 51,55 51,54 45,52" fill="#c8940a" opacity="0.7"/>
-    <polygon points="51,55 57,55 57,53 51,54" fill="#b87c08" opacity="0.7"/>
-    <polygon points="57,55 63,55 63,54 57,53" fill="#c8940a" opacity="0.6"/>
-    <!-- Middle row — hills -->
-    <polygon points="22,52 27,52 27,44 22,45" fill="#d4a020" opacity="0.85"/>
-    <polygon points="27,52 33,50 33,40 27,44" fill="#e8b830" opacity="0.9"/>
-    <polygon points="33,50 39,51 39,43 33,40" fill="#c8940a" opacity="0.85"/>
-    <polygon points="39,51 45,52 45,42 39,43" fill="#e8c040" opacity="0.9"/>
-    <polygon points="45,52 51,54 51,44 45,42" fill="#d4a020" opacity="0.85"/>
-    <polygon points="51,54 57,53 57,45 51,44" fill="#c08010" opacity="0.8"/>
-    <polygon points="57,53 63,54 63,46 57,45" fill="#d4a020" opacity="0.8"/>
-    <!-- Top row — peaks -->
-    <polygon points="22,45 27,44 27,36 22,38" fill="#e8c040" opacity="0.9"/>
-    <polygon points="27,44 33,40 33,28 27,36" fill="#f0d060" opacity="0.95"/>
-    <polygon points="33,40 39,43 39,30 33,28" fill="#d4a020" opacity="0.9"/>
-    <polygon points="39,43 45,42 45,26 39,30" fill="#f0d060" opacity="0.95"/>
-    <polygon points="45,42 51,44 51,35 45,26" fill="#e0b020" opacity="0.9"/>
-    <polygon points="51,44 57,45 57,36 51,35" fill="#c8940a" opacity="0.85"/>
-    <polygon points="57,45 63,46 63,37 57,36" fill="#d4a020" opacity="0.85"/>
-    <!-- Darker shadow on steep faces -->
-    <polygon points="27,36 33,28 33,40 27,44" fill="#7a5000" opacity="0.25"/>
-    <polygon points="39,30 45,26 45,42 39,43" fill="#7a5000" opacity="0.2"/>
-    <!-- Highlight ridge lines across peaks -->
-    <path d="M23,37 C28,27 33,24 39,25 C45,21 50,30 57,33 C60,34 62,35 63,36" fill="none" stroke="#f8e080" stroke-width="0.8" opacity="0.7"/>
-    <!-- Axis labels -->
-    <text x="63" y="58" text-anchor="end" font-size="2.5" fill="#e03030" font-family="sans-serif" font-weight="bold">X</text>
-    <text x="23" y="11.5" font-size="2.5" fill="#2266ee" font-family="sans-serif" font-weight="bold">Z</text>
-    <text x="22" y="58" font-size="2.5" fill="#28a040" font-family="sans-serif" font-weight="bold">Y</text>
-    <!-- Axis tick marks -->
-    <line x1="22" y1="56" x2="63" y2="56" stroke="#bbb" stroke-width="0.6"/>
-    <line x1="22" y1="10" x2="22" y2="57" stroke="#bbb" stroke-width="0.6"/>
   </svg>`,
 
   // Left panel (tools + sliders) + white canvas with symmetric SVG path shape
