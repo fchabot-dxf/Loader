@@ -7,7 +7,8 @@ Fred.renderSidebar = function () {
   if (visible.length === 0) {
     const hint = document.createElement("div");
     hint.className = "app-group";
-    hint.style.cssText = "padding:16px 14px;color:var(--fg-dim);text-transform:none;" +
+    hint.style.cssText =
+      "padding:16px 14px;color:var(--fg-dim);text-transform:none;" +
       "letter-spacing:0;font-size:12px;";
     hint.textContent = Fred.state.editMode
       ? "No visible apps — use + in a section to add one."
@@ -31,7 +32,7 @@ Fred.renderSidebar = function () {
     if (Fred.state.editMode) {
       const addBtn = document.createElement("button");
       addBtn.className = "group-add";
-      addBtn.title = 'Add app to "' + group + '"';
+      addBtn.title = "Add app to “" + group + "”";
       addBtn.textContent = "+";
       addBtn.addEventListener("click", e => {
         e.stopPropagation();
@@ -61,9 +62,12 @@ Fred.makeSidebarItem = function (app) {
 
     const del = document.createElement("button");
     del.className = "edit-delete";
-    del.textContent = "x";
+    del.textContent = "×";    // ×
     del.title = "Hide from sidebar";
-    del.addEventListener("click", e => { e.stopPropagation(); Fred.editHideApp(app.id); });
+    del.addEventListener("click", e => {
+      e.stopPropagation();
+      Fred.editHideApp(app.id);
+    });
     el.appendChild(del);
   }
 
@@ -91,7 +95,7 @@ Fred.makeSidebarItem = function (app) {
   return el;
 };
 
-// Mobile full-screen grid
+// ── Mobile full-screen app grid ───────────────────────────────────────────
 Fred.renderMobileGrid = function () {
   const grid = Fred.el.mobileGrid;
   if (!grid) return;
@@ -131,7 +135,7 @@ Fred.renderMobileGrid = function () {
     if (Fred.state.editMode) {
       const addBtn = document.createElement("button");
       addBtn.className = "group-add";
-      addBtn.title = 'Add app to "' + group + '"';
+      addBtn.title = "Add app to “" + group + "”";
       addBtn.textContent = "+";
       addBtn.addEventListener("click", e => {
         e.stopPropagation();
@@ -154,9 +158,12 @@ Fred.makeMobileTile = function (app) {
   if (Fred.state.editMode) {
     const del = document.createElement("button");
     del.className = "edit-delete";
-    del.textContent = "x";
+    del.textContent = "×";    // ×
     del.title = "Hide app";
-    del.addEventListener("click", e => { e.stopPropagation(); Fred.editHideApp(app.id); });
+    del.addEventListener("click", e => {
+      e.stopPropagation();
+      Fred.editHideApp(app.id);
+    });
     el.appendChild(del);
   }
 
@@ -165,10 +172,10 @@ Fred.makeMobileTile = function (app) {
   iconDiv.innerHTML = Fred.getIcon(app.id);
   el.appendChild(iconDiv);
 
-  const name = document.createElement("div");
-  name.className = "tile-name";
-  name.textContent = app.name || app.id;
-  el.appendChild(name);
+  const nameEl = document.createElement("div");
+  nameEl.className = "tile-name";
+  nameEl.textContent = app.name || app.id;
+  el.appendChild(nameEl);
 
   if (!Fred.state.editMode) {
     el.addEventListener("click", () => Fred.openApp(app.id));
