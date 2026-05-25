@@ -57,14 +57,50 @@ Fred.ICONS = {
     <text x="17" y="61.5" font-size="2.2" fill="#569cd6" font-family="monospace">G-Code · Ln 4</text>
   </svg>`,
 
-  // 3D terrain mesh — real screenshot of the app embedded as raster art
+  // 3D terrain mesh — SVG polygon perspective grid, warm sandy palette
   "b-spline-generator-web-addin": `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
     <!-- App window chrome -->
     <rect width="64" height="64" rx="4" fill="#f5f5f5"/>
-    <!-- Terrain photo embedded as raster — real screenshot of app viewport -->
-    <clipPath id="vp"><rect x="21" y="9" width="43" height="55" rx="0"/></clipPath>
-    <image x="21" y="9" width="43" height="55" preserveAspectRatio="xMidYMid slice" clip-path="url(#vp)"
-      href="data:image/jpeg;base64,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"/>
+    <!-- Terrain viewport bg + sky -->
+    <rect x="21" y="9" width="43" height="55" fill="#faf7ee"/>
+    <rect x="21" y="9" width="43" height="8" fill="#ddeaf8"/>
+    <!-- Terrain faces back-to-front (painter algorithm) -->
+    <!-- row 3-4 (farthest) -->
+    <polygon points="28,20 33.8,18 32.75,26.5 26.25,28.5" fill="#9e8040"/>
+    <polygon points="33.8,18 39.6,16 39.25,22.5 32.75,26.5" fill="#b89844"/>
+    <polygon points="39.6,16 45.4,14 45.75,20.5 39.25,22.5" fill="#d4b455"/>
+    <polygon points="45.4,14 51.2,18 52.25,24.5 45.75,20.5" fill="#c8a84b"/>
+    <polygon points="51.2,18 57,20 58.75,30.5 52.25,24.5" fill="#9e8040"/>
+    <!-- row 2-3 -->
+    <polygon points="26.25,28.5 32.75,26.5 31.7,37 24.5,41" fill="#a88a42"/>
+    <polygon points="32.75,26.5 39.25,22.5 38.9,29 31.7,37" fill="#d4b455"/>
+    <polygon points="39.25,22.5 45.75,20.5 46.1,31 38.9,29" fill="#e8cc68"/>
+    <polygon points="45.75,20.5 52.25,24.5 53.3,37 46.1,31" fill="#cdb050"/>
+    <polygon points="52.25,24.5 58.75,30.5 60.5,39 53.3,37" fill="#a88a42"/>
+    <!-- row 1-2 -->
+    <polygon points="24.5,41 31.7,37 30.65,45.5 22.75,49.5" fill="#a88a42"/>
+    <polygon points="31.7,37 38.9,29 38.55,41.5 30.65,45.5" fill="#d4b455"/>
+    <polygon points="38.9,29 46.1,31 46.45,43.5 38.55,41.5" fill="#e8cc68"/>
+    <polygon points="46.1,31 53.3,37 54.35,47.5 46.45,43.5" fill="#c8a84b"/>
+    <polygon points="53.3,37 60.5,39 62.25,51.5 54.35,47.5" fill="#a88a42"/>
+    <!-- row 0-1 (nearest) -->
+    <polygon points="22.75,49.5 30.65,45.5 29.6,60 21,62" fill="#a88a42"/>
+    <polygon points="30.65,45.5 38.55,41.5 38.2,56 29.6,60" fill="#c8a84b"/>
+    <polygon points="38.55,41.5 46.45,43.5 46.8,58 38.2,56" fill="#d4b455"/>
+    <polygon points="46.45,43.5 54.35,47.5 55.4,60 46.8,58" fill="#b89844"/>
+    <polygon points="54.35,47.5 62.25,51.5 64,62 55.4,60" fill="#9a7a3a"/>
+    <!-- Grid lines -->
+    <polyline points="21,62 29.6,60 38.2,56 46.8,58 55.4,60 64,62" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="22.75,49.5 30.65,45.5 38.55,41.5 46.45,43.5 54.35,47.5 62.25,51.5" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="24.5,41 31.7,37 38.9,29 46.1,31 53.3,37 60.5,39" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="26.25,28.5 32.75,26.5 39.25,22.5 45.75,20.5 52.25,24.5 58.75,30.5" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="28,20 33.8,18 39.6,16 45.4,14 51.2,18 57,20" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="21,62 22.75,49.5 24.5,41 26.25,28.5 28,20" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="29.6,60 30.65,45.5 31.7,37 32.75,26.5 33.8,18" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="38.2,56 38.55,41.5 38.9,29 39.25,22.5 39.6,16" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="46.8,58 46.45,43.5 46.1,31 45.75,20.5 45.4,14" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="55.4,60 54.35,47.5 53.3,37 52.25,24.5 51.2,18" fill="none" stroke="#6a5020" stroke-width="0.4"/>
+    <polyline points="64,62 62.25,51.5 60.5,39 58.75,30.5 57,20" fill="none" stroke="#6a5020" stroke-width="0.4"/>
     <!-- Title bar overlay -->
     <rect width="64" height="9" rx="4" fill="#e8e8e8"/>
     <rect y="5" width="64" height="4" fill="#e8e8e8"/>
@@ -72,7 +108,7 @@ Fred.ICONS = {
     <circle cx="10" cy="4.5" r="1.8" fill="#ffbd2e"/>
     <circle cx="15" cy="4.5" r="1.8" fill="#28c940"/>
     <text x="35" y="7" text-anchor="middle" font-size="3.5" fill="#1a6aff" font-family="sans-serif" font-weight="bold">B-SPLINE GENERATOR</text>
-    <!-- Left panel overlay (drawn on top of photo) -->
+    <!-- Left panel overlay (drawn on top of terrain) -->
     <rect x="0" y="9" width="21" height="55" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
     <rect x="0" y="57" width="21" height="7" rx="4" fill="#fff"/>
     <rect x="1" y="11" width="19" height="5" rx="2" fill="#28c940"/>
@@ -90,7 +126,7 @@ Fred.ICONS = {
     <text x="2" y="57" font-size="2.3" fill="#555" font-family="sans-serif">▶ FILTER</text>
   </svg>`,
 
-  // Left panel (tools + sliders) + white canvas with symmetric SVG path shape
+    // Left panel (tools + sliders) + white canvas with symmetric SVG path shape
   "SVG creator": `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
     <rect width="64" height="64" rx="4" fill="#f8f8f8"/>
     <rect width="64" height="9" rx="4" fill="#f0f0f0"/>
@@ -565,61 +601,4 @@ Fred.ICONS = {
     <rect x="0" y="57" width="13" height="7" rx="4" fill="#fff"/>
     <rect x="1" y="10" width="11" height="6" rx="1.5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="0.4"/>
     <text x="6.5" y="15" text-anchor="middle" font-size="4.5" fill="#666">↖</text>
-    <rect x="1" y="17" width="11" height="6" rx="1.5" fill="#3a7ee8"/>
-    <text x="6.5" y="22" text-anchor="middle" font-size="5" fill="#fff">−</text>
-    <rect x="1" y="24" width="11" height="6" rx="1.5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="0.4"/>
-    <text x="6.5" y="29" text-anchor="middle" font-size="4.5" fill="#666">↩</text>
-    <rect x="1" y="31" width="11" height="5" rx="1.5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="0.4"/>
-    <text x="6.5" y="35.5" text-anchor="middle" font-size="4" fill="#666">▦</text>
-    <!-- Color swatches -->
-    <rect x="2" y="38" width="3" height="4" rx="1.5" fill="#e84040"/>
-    <rect x="4.5" y="38" width="3" height="4" fill="#3a80e8"/>
-    <rect x="7" y="38" width="4" height="4" rx="1.5" fill="#e8c020"/>
-    <circle cx="6.5" cy="47" r="3.5" fill="#3a80e8"/>
-    <circle cx="6.5" cy="54" r="3.5" fill="#e84040"/>
-    <circle cx="6.5" cy="61" r="3" fill="#e8c020"/>
-    <!-- Main white canvas with grid -->
-    <rect x="13" y="9" width="51" height="55" fill="#fff"/>
-    <line x1="13" y1="18" x2="64" y2="18" stroke="#eee" stroke-width="0.5"/>
-    <line x1="13" y1="27" x2="64" y2="27" stroke="#eee" stroke-width="0.5"/>
-    <line x1="13" y1="36" x2="64" y2="36" stroke="#eee" stroke-width="0.5"/>
-    <line x1="13" y1="45" x2="64" y2="45" stroke="#eee" stroke-width="0.5"/>
-    <line x1="13" y1="54" x2="64" y2="54" stroke="#eee" stroke-width="0.5"/>
-    <line x1="22" y1="9" x2="22" y2="64" stroke="#eee" stroke-width="0.5"/>
-    <line x1="31" y1="9" x2="31" y2="64" stroke="#eee" stroke-width="0.5"/>
-    <line x1="40" y1="9" x2="40" y2="64" stroke="#eee" stroke-width="0.5"/>
-    <line x1="49" y1="9" x2="49" y2="64" stroke="#eee" stroke-width="0.5"/>
-    <line x1="58" y1="9" x2="58" y2="64" stroke="#eee" stroke-width="0.5"/>
-    <!--
-      Bent ribbon — faithfully scaled from the actual exported SVG reference
-      (3d-outline_full_color_path_001.svg, 207×137 canvas).
-      Source bounding box x:33.5→182.4, y:24→112.5.
-      Scale = 0.309, offset x+5.65 y+15.88
-      Segment 1 goes top-left → centre-bottom; segment 2 centre-bottom → top-right.
-    -->
-    <!-- p_0  red top face (segment 1) -->
-    <polygon points="18.6,25.9 18.6,23.3 41,45.7 40.9,48.2" fill="#ec1f27"/>
-    <!-- p_1  blue side face (segment 1) -->
-    <polygon points="18.6,25.9 16,25.9 40.7,50.6 40.9,48.2" fill="#1034A6"/>
-    <!-- p_2  olive start cap -->
-    <polygon points="18.6,23.3 16,25.9 18.6,25.9" fill="#837e53"/>
-    <!-- p_3  yellow top face (segment 2) -->
-    <polygon points="40.9,48.2 41,45.7 59.7,30.7 59.4,33.3" fill="#f5c800"/>
-    <!-- p_4  black side face (segment 2) -->
-    <polygon points="40.9,48.2 40.7,50.6 62,33.6 59.4,33.3" fill="#090700"/>
-    <!-- p_5  red end cap -->
-    <polygon points="62,33.6 59.7,30.7 59.4,33.3" fill="#ec1f27"/>
-  </svg>`,
-};
-
-Fred.getIcon = function (id) {
-  return Fred.ICONS[id] || `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <rect width="64" height="64" rx="4" fill="#334155"/>
-    <rect width="64" height="9" rx="4" fill="#1e293b"/>
-    <rect y="5" width="64" height="4" fill="#1e293b"/>
-    <circle cx="5" cy="4.5" r="1.8" fill="#ff5f57"/>
-    <circle cx="10" cy="4.5" r="1.8" fill="#ffbd2e"/>
-    <circle cx="15" cy="4.5" r="1.8" fill="#28c940"/>
-    <text x="32" y="40" text-anchor="middle" font-size="18" fill="#94a3b8" font-family="sans-serif">${(id[0]||'?').toUpperCase()}</text>
-  </svg>`;
-};
+    <rect x="1" y="17" width
