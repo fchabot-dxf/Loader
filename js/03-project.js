@@ -9,6 +9,5 @@ Fred.saveProject = function () {
   try { localStorage.setItem(Fred.PROJECT_KEY, JSON.stringify(Fred.state.project)); } catch {}
 };
 Fred.renderProjectName = function () {
-  document.getElementById("project-name").textContent =
-    Fred.state.project.name || "untitled project";
+  Fred.el.projectName.textContent = Fred.state.project.name || "untitled project";
 };

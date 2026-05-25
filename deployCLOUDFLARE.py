@@ -18,12 +18,16 @@ What it does:
     5. Runs `wrangler pages deploy ./_pages_build --project-name=loader
        --branch=main --commit-dirty=true`, streaming output.
     6. Prints the live URL on success.
+    7. Queries `wrangler pages project list --json` and adds any new Pages
+       projects to apps.json as placeholder entries (icon "?", group "apps").
+       Open Setup in the loader to assign proper groups and icons afterward.
 
 First-time setup (if wrangler is missing):
     npm install -g wrangler
     # or just let this script fall back to npx (slower but no install)
 """
 
+import json
 import os
 import re
 import shutil
@@ -52,6 +56,7 @@ INCLUDE = [
     "loader.css",
     "fred-host.js",
     "js/*.js",
+    "js/icons/*.js",
 ]
 
 
@@ -168,6 +173,75 @@ def deploy(wrangler):
     return m.group(0) if m else None
 
 
+def list_pages_projects(wrangler):
+    """Return list of Pages project names from wrangler (plain-text table parse)."""
+    code, raw = run_capture(wrangler + ["pages", "project", "list"])
+    if code != 0:
+        return None
+    # Table rows look like:  │ project-name   │ project-name.pages.dev  │ ...
+    # Grab the first column of every data row (skip header row with "Name").
+    names = []
+    for m in re.finditer(r"│\s+([a-z0-9][a-z0-9-]*)\s+│", raw):
+        name = m.group(1).strip()
+        if name and name != "name":   # "name" is the header
+            names.append(name)
+    return names
+
+
+def sync_apps(wrangler):
+    """
+    After deploy, query Cloudflare for all your Pages projects and add any
+    that are missing from apps.json as placeholder entries.
+
+    Only ever ADDS — never removes or modifies existing entries.
+    Skips the loader project itself (PROJECT_NAME).
+    """
+    apps_path = HERE / "apps.json"
+    if not apps_path.exists():
+        return
+
+    print()
+    print(bold("Syncing apps.json with Cloudflare Pages projects…"))
+
+    names = list_pages_projects(wrangler)
+    if names is None:
+        print(yellow("  Skipping sync — could not fetch project list."))
+        return
+
+    with open(apps_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    existing_ids  = {a["id"] for a in data.get("apps", [])}
+    existing_urls = {a.get("url", "").rstrip("/") for a in data.get("apps", [])}
+
+    added = []
+    for name in names:
+        if name == PROJECT_NAME:
+            continue                           # skip the loader itself
+        url = f"https://{name}.pages.dev"
+        if name in existing_ids or url in existing_urls or (url + "/") in existing_urls:
+            continue                           # already registered
+
+        pretty_name = name.replace("-", " ").title()
+        data["apps"].append({
+            "id":    name,
+            "name":  pretty_name,
+            "icon":  "?",
+            "group": "apps",
+            "url":   url + "/",
+        })
+        added.append(name)
+
+    if added:
+        with open(apps_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        print(green(f"  Added {len(added)} new app(s): {', '.join(added)}"))
+        print(yellow("  → Open Setup in the loader to assign groups and icons."))
+    else:
+        print(green("  All Cloudflare Pages projects already in apps.json."))
+
+
 def cleanup():
     if STAGE.exists():
         try:
@@ -210,6 +284,7 @@ def main():
     url = deploy(wrangler)
 
     cleanup()
+    sync_apps(wrangler)
 
     print()
     if url:

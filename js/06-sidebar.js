@@ -1,6 +1,6 @@
 // Render the desktop sidebar: all non-hidden apps, grouped by `group`.
 Fred.renderSidebar = function () {
-  const list = document.getElementById("app-list");
+  const list = Fred.el.appList;
   list.innerHTML = "";
   const visible = Fred.state.apps.filter(a => !a.hidden);
 
@@ -50,11 +50,10 @@ Fred.makeSidebarItem = function (app) {
 
 // Render the mobile full-screen app grid.
 Fred.renderMobileGrid = function () {
-  const grid = document.getElementById("mobile-grid");
+  const grid = Fred.el.mobileGrid;
   if (!grid) return;
   grid.innerHTML = "";
 
-  // Header
   const header = document.createElement("div");
   header.id = "mobile-grid-header";
   const title = document.createElement("h2"); title.textContent = "Apps";

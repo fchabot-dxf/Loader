@@ -3,18 +3,14 @@ Fred.openSetup = function () {
   Fred.state.setupDraft = {
     apps: Fred.state.apps.map(a => ({ ...a })),
   };
-  document.getElementById("welcome").hidden = true;
-  document.getElementById("app-frame").hidden = true;
-  document.getElementById("setup-view").hidden = false;
+  Fred.showView("setup");
   Fred.renderSetup();
   Fred.updateSetupDirty();
 };
 
 Fred.closeSetup = function () {
-  document.getElementById("setup-view").hidden = true;
   Fred.state.setupDraft = null;
-  if (Fred.state.activeId) document.getElementById("app-frame").hidden = false;
-  else document.getElementById("welcome").hidden = false;
+  Fred.showView(Fred.state.activeId ? "frame" : "welcome");
 };
 
 Fred.renderSetup = function () {

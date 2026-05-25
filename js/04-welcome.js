@@ -1,6 +1,6 @@
 // Welcome / empty / error screen shown when no app is active.
 Fred.showWelcome = function (msg) {
-  const w = document.getElementById("welcome");
+  const w = Fred.el.welcome;
   if (msg) {
     w.innerHTML = "";
     const h = document.createElement("h2"); h.textContent = "no apps yet";
@@ -9,7 +9,5 @@ Fred.showWelcome = function (msg) {
     p.style.cssText = "white-space:pre-wrap;font-size:12px;color:#888;max-width:480px;";
     w.appendChild(p);
   }
-  w.hidden = false;
-  document.getElementById("app-frame").hidden = true;
-  document.getElementById("setup-view").hidden = true;
+  Fred.showView("welcome");
 };

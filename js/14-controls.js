@@ -13,16 +13,14 @@ Fred.toggleSidebarCollapsed = function () {
   localStorage.setItem(Fred.SIDEBAR_KEY, next ? "1" : "0");
 };
 
-// Bind sidebar controls + project-name rename + footer buttons.
+// Bind all controls — called once at boot, after Fred.el is populated.
 Fred.bindControls = function () {
-  // Restore sidebar state on boot.
   const wasCollapsed = localStorage.getItem(Fred.SIDEBAR_KEY) === "1";
   Fred.applySidebarCollapsed(wasCollapsed);
 
-  // Single toggle button (‹ / ›)
   document.getElementById("sidebar-collapse").addEventListener("click", Fred.toggleSidebarCollapsed);
 
-  document.getElementById("project-name").addEventListener("click", () => {
+  Fred.el.projectName.addEventListener("click", () => {
     const next = prompt("Project name:", Fred.state.project.name || "");
     if (next != null) {
       Fred.state.project.name = next.trim() || "untitled project";
@@ -32,8 +30,7 @@ Fred.bindControls = function () {
 
   document.getElementById("reload-app").addEventListener("click", () => {
     if (!Fred.state.activeId) return;
-    const frame = document.getElementById("app-frame");
-    frame.src = frame.src;
+    Fred.el.frame.src = Fred.el.frame.src;
   });
 
   document.getElementById("pop-out").addEventListener("click", () => {
@@ -47,10 +44,8 @@ Fred.bindControls = function () {
   document.getElementById("setup-save").addEventListener("click", Fred.saveSetup);
   document.getElementById("setup-discard").addEventListener("click", Fred.discardSetup);
 
-  // Mobile: back button + setup shortcut
   const mobileBack = document.getElementById("mobile-back");
   if (mobileBack) mobileBack.addEventListener("click", Fred.goHome);
-
   const mobileSetupBtn = document.getElementById("mobile-setup-btn");
   if (mobileSetupBtn) mobileSetupBtn.addEventListener("click", Fred.openSetup);
 };

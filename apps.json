@@ -133,5 +133,23 @@
       "url": "https://quiz-francais.pages.dev/",
       "local": false
     },
+    {
+      "id": "script-toolbox",
+      "name": "Script Toolbox",
+      "icon": "⚙",
+      "group": "cnc",
+      "description": "Script utilities and tools",
+      "url": "https://script-toolbox.pages.dev/",
+      "local": false
+    },
+    {
+      "id": "fredericchabot",
+      "name": "Frédéric Chabot",
+      "icon": "FC",
+      "group": "apps",
+      "description": "Personal portfolio site",
+      "url": "https://fredericchabot.pages.dev/",
+      "local": false
+    }
   ]
 }

@@ -1,8 +1,7 @@
 // Send the "hello" postMessage to a freshly-loaded app iframe.
 // fred-host.js inside the app responds with "hello-ack" if it's loader-aware.
 Fred.sendHandshake = function (app) {
-  const frame = document.getElementById("app-frame");
-  const win = frame.contentWindow;
+  const win = Fred.el.frame.contentWindow;
   if (!win) return;
   if (Fred.state.pendingAck) clearTimeout(Fred.state.pendingAck.timer);
   try {
