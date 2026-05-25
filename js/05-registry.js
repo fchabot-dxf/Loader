@@ -7,7 +7,7 @@ Fred.loadApps = async function () {
       if (!r.ok) { tried.push(url + " -> " + r.status); continue; }
       const data = await r.json();
       if (data && Array.isArray(data.apps)) {
-        Fred.state.hasServer = url === "/apps.json";
+        Fred.state.hasServer = false; // Cloudflare Pages is read-only; saves go to localStorage
         return data.apps;
       }
     } catch (e) {
