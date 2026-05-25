@@ -4,46 +4,62 @@
 
 Fred.ICONS = {
 
-  // Dark navy header + variable tabs row + big black canvas + bottom button strip
+  // G-code code editor: dark bg, line numbers, syntax-coloured G-code, status bar
   "DDCS-Studio": `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-    <rect width="64" height="64" rx="4" fill="#0d1f42"/>
-    <rect width="64" height="9" rx="4" fill="#1b3a6e"/>
-    <rect y="5" width="64" height="4" fill="#1b3a6e"/>
-    <circle cx="5" cy="4.5" r="1.8" fill="#ff5f57"/>
-    <circle cx="10" cy="4.5" r="1.8" fill="#ffbd2e"/>
-    <circle cx="15" cy="4.5" r="1.8" fill="#28c940"/>
-    <text x="39" y="7" text-anchor="middle" font-size="3.5" fill="#a0b8e0" font-family="sans-serif">DDCS Studio V9</text>
-    <rect x="0" y="9" width="64" height="9" fill="#2a3f6e"/>
-    <rect x="1" y="10" width="8" height="6" rx="1" fill="#d8e4f0"/>
-    <text x="5" y="14.5" text-anchor="middle" font-size="2.5" fill="#1a2a50" font-family="monospace">#0</text>
-    <rect x="10" y="10" width="8" height="6" rx="1" fill="#d8e4f0"/>
-    <text x="14" y="14.5" text-anchor="middle" font-size="2.5" fill="#1a2a50" font-family="monospace">#1</text>
-    <rect x="19" y="10" width="8" height="6" rx="1" fill="#d8e4f0"/>
-    <text x="23" y="14.5" text-anchor="middle" font-size="2.5" fill="#1a2a50" font-family="monospace">#2</text>
-    <rect x="28" y="10" width="8" height="6" rx="1" fill="#d8e4f0"/>
-    <text x="32" y="14.5" text-anchor="middle" font-size="2.5" fill="#1a2a50" font-family="monospace">#3</text>
-    <rect x="37" y="10" width="8" height="6" rx="1" fill="#d8e4f0"/>
-    <text x="41" y="14.5" text-anchor="middle" font-size="2.5" fill="#1a2a50" font-family="monospace">#4</text>
-    <rect x="46" y="10" width="8" height="6" rx="1" fill="#d8e4f0"/>
-    <text x="50" y="14.5" text-anchor="middle" font-size="2.5" fill="#1a2a50" font-family="monospace">#5</text>
-    <rect x="55" y="10" width="8" height="6" rx="1" fill="#d8e4f0"/>
-    <text x="59" y="14.5" text-anchor="middle" font-size="2.5" fill="#1a2a50" font-family="monospace">#6</text>
-    <rect x="0" y="18" width="64" height="38" fill="#000"/>
-    <text x="32" y="37" text-anchor="middle" font-size="3.5" fill="#2a2a2a" font-family="monospace">( System Ready )</text>
-    <rect x="0" y="56" width="64" height="8" rx="0" fill="#2a3f6e"/>
-    <rect x="0" y="60" width="64" height="4" rx="4" fill="#2a3f6e"/>
-    <rect x="1" y="57" width="9" height="4" rx="1" fill="#1a2a50" stroke="#4a6ab0" stroke-width="0.4"/>
-    <text x="5.5" y="60" text-anchor="middle" font-size="2.3" fill="#a0c0e0" font-family="sans-serif">Comm</text>
-    <rect x="11" y="57" width="7" height="4" rx="1" fill="#1a2a50" stroke="#4a6ab0" stroke-width="0.4"/>
-    <text x="14.5" y="60" text-anchor="middle" font-size="2.3" fill="#a0c0e0" font-family="sans-serif">WCS</text>
-    <rect x="33" y="57" width="9" height="4" rx="1" fill="#1a2a50" stroke="#4a6ab0" stroke-width="0.4"/>
-    <text x="37.5" y="60" text-anchor="middle" font-size="2.3" fill="#a0c0e0" font-family="sans-serif">Corner</text>
-    <rect x="54" y="57" width="9" height="4" rx="1" fill="#1a2a50" stroke="#4a6ab0" stroke-width="0.4"/>
-    <text x="58.5" y="60" text-anchor="middle" font-size="2.3" fill="#a0c0e0" font-family="sans-serif">EXPORT</text>
+    <!-- Editor background -->
+    <rect width="64" height="64" rx="6" fill="#1e1e2e"/>
+    <!-- Title bar -->
+    <rect width="64" height="10" rx="6" fill="#252040"/>
+    <rect y="6" width="64" height="4" fill="#252040"/>
+    <text x="32" y="7.5" text-anchor="middle" font-size="3" fill="#6a8ac0" font-family="monospace">program.nc</text>
+    <!-- Line-number gutter -->
+    <rect x="0" y="10" width="9" height="47" fill="#181824"/>
+    <line x1="9" y1="10" x2="9" y2="57" stroke="#2a2a42" stroke-width="0.5"/>
+    <!-- Line 1: G21 -->
+    <text x="1.5" y="16.5" font-size="2.8" fill="#3d4466" font-family="monospace">1</text>
+    <text x="11" y="16.5" font-size="2.8" fill="#569cd6" font-family="monospace">G21</text>
+    <!-- Line 2: G90 -->
+    <text x="1.5" y="21" font-size="2.8" fill="#3d4466" font-family="monospace">2</text>
+    <text x="11" y="21" font-size="2.8" fill="#569cd6" font-family="monospace">G90</text>
+    <!-- Line 3: M3 S1000 -->
+    <text x="1.5" y="25.5" font-size="2.8" fill="#3d4466" font-family="monospace">3</text>
+    <text x="11" y="25.5" font-size="2.8" fill="#c586c0" font-family="monospace">M3</text>
+    <text x="18.5" y="25.5" font-size="2.8" fill="#9cdcfe" font-family="monospace">S1000</text>
+    <!-- Line 4: G0 X0 Y0  (highlighted/cursor line) -->
+    <rect x="9" y="27.2" width="55" height="4.5" fill="rgba(100,100,200,0.13)"/>
+    <text x="1.5" y="30.5" font-size="2.8" fill="#3d4466" font-family="monospace">4</text>
+    <text x="11" y="30.5" font-size="2.8" fill="#569cd6" font-family="monospace">G0</text>
+    <text x="17.5" y="30.5" font-size="2.8" fill="#9cdcfe" font-family="monospace">X0 Y0</text>
+    <!-- Line 5: G1 F300 Z-2 -->
+    <text x="1.5" y="35" font-size="2.8" fill="#3d4466" font-family="monospace">5</text>
+    <text x="11" y="35" font-size="2.8" fill="#569cd6" font-family="monospace">G1</text>
+    <text x="17.5" y="35" font-size="2.8" fill="#9cdcfe" font-family="monospace">F300 Z-2</text>
+    <!-- Line 6: G1 X50 Y50 -->
+    <text x="1.5" y="39.5" font-size="2.8" fill="#3d4466" font-family="monospace">6</text>
+    <text x="11" y="39.5" font-size="2.8" fill="#569cd6" font-family="monospace">G1</text>
+    <text x="17.5" y="39.5" font-size="2.8" fill="#9cdcfe" font-family="monospace">X50 Y50</text>
+    <!-- Line 7: comment -->
+    <text x="1.5" y="44" font-size="2.8" fill="#3d4466" font-family="monospace">7</text>
+    <text x="11" y="44" font-size="2.8" fill="#6a9955" font-family="monospace">; tool change</text>
+    <!-- Line 8: M6 T2 -->
+    <text x="1.5" y="48.5" font-size="2.8" fill="#3d4466" font-family="monospace">8</text>
+    <text x="11" y="48.5" font-size="2.8" fill="#c586c0" font-family="monospace">M6</text>
+    <text x="18.5" y="48.5" font-size="2.8" fill="#9cdcfe" font-family="monospace">T2</text>
+    <!-- Line 9: G0 Z5 -->
+    <text x="1.5" y="53" font-size="2.8" fill="#3d4466" font-family="monospace">9</text>
+    <text x="11" y="53" font-size="2.8" fill="#569cd6" font-family="monospace">G0</text>
+    <text x="17.5" y="53" font-size="2.8" fill="#9cdcfe" font-family="monospace">Z5</text>
+    <!-- Status bar -->
+    <rect x="0" y="57" width="64" height="7" fill="#181824"/>
+    <rect x="0" y="61" width="64" height="3" rx="3" fill="#181824"/>
+    <rect x="1" y="58.5" width="13" height="3.5" rx="1.5" fill="#0078d4"/>
+    <text x="7.5" y="61.5" text-anchor="middle" font-size="2.3" fill="#fff" font-family="sans-serif">DDCS</text>
+    <text x="17" y="61.5" font-size="2.2" fill="#569cd6" font-family="monospace">G-Code · Ln 4</text>
   </svg>`,
 
-  // White left panel (sections + green button) + black 3D viewport with spline mesh
+  // 3D terrain mesh — warm ochre surface, white grid viewport, axis labels
   "b-spline-generator-web-addin": `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- App window: white background -->
     <rect width="64" height="64" rx="4" fill="#f5f5f5"/>
     <rect width="64" height="9" rx="4" fill="#e8e8e8"/>
     <rect y="5" width="64" height="4" fill="#e8e8e8"/>
@@ -51,6 +67,7 @@ Fred.ICONS = {
     <circle cx="10" cy="4.5" r="1.8" fill="#ffbd2e"/>
     <circle cx="15" cy="4.5" r="1.8" fill="#28c940"/>
     <text x="35" y="7" text-anchor="middle" font-size="3.5" fill="#1a6aff" font-family="sans-serif" font-weight="bold">B-SPLINE GENERATOR</text>
+    <!-- Left panel -->
     <rect x="0" y="9" width="21" height="55" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
     <rect x="0" y="57" width="21" height="7" rx="4" fill="#fff"/>
     <rect x="1" y="11" width="19" height="5" rx="2" fill="#28c940"/>
@@ -59,48 +76,66 @@ Fred.ICONS = {
     <text x="6" y="21" text-anchor="middle" font-size="2.3" fill="#333" font-family="sans-serif">Undo</text>
     <rect x="11" y="18" width="8" height="3.5" rx="1" fill="#fff" stroke="#bbb" stroke-width="0.5"/>
     <text x="15" y="21" text-anchor="middle" font-size="2.3" fill="#333" font-family="sans-serif">Redo</text>
-    <text x="2" y="27" font-size="2.3" fill="#999" font-family="sans-serif" font-weight="bold">STOCK DIMENSIONS</text>
-    <text x="2" y="32" font-size="2.3" fill="#333" font-family="sans-serif">Width (X)  7</text>
-    <text x="2" y="36.5" font-size="2.3" fill="#333" font-family="sans-serif">Height (Y)  9</text>
-    <text x="2" y="41" font-size="2.3" fill="#333" font-family="sans-serif">Depth (Z)  1.5</text>
-    <rect x="1" y="43" width="19" height="2.5" rx="1" fill="#eef"/>
-    <rect x="1" y="43" width="6" height="2.5" rx="1" fill="#1a6aff" opacity="0.4"/>
+    <text x="2" y="27" font-size="2.3" fill="#999" font-family="sans-serif" font-weight="bold">DIMENSIONS</text>
+    <text x="2" y="32" font-size="2.3" fill="#333" font-family="sans-serif">Width  7</text>
+    <text x="2" y="36.5" font-size="2.3" fill="#333" font-family="sans-serif">Height  9</text>
+    <text x="2" y="41" font-size="2.3" fill="#333" font-family="sans-serif">Depth  1.5</text>
     <text x="2" y="49" font-size="2.3" fill="#555" font-family="sans-serif">▶ SEED</text>
     <text x="2" y="53" font-size="2.3" fill="#555" font-family="sans-serif">▶ SKELETON</text>
     <text x="2" y="57" font-size="2.3" fill="#555" font-family="sans-serif">▶ FILTER</text>
-    <!-- Gray 3D viewport — matches actual app: perspective terrain slab on gray bg -->
-    <rect x="21" y="9" width="43" height="55" fill="#787878"/>
-    <rect x="21" y="57" width="43" height="7" rx="4" fill="#787878"/>
-    <!-- Grid floor lines -->
-    <line x1="22" y1="54" x2="63" y2="54" stroke="#666" stroke-width="0.4"/>
-    <line x1="26" y1="54" x2="48" y2="59" stroke="#666" stroke-width="0.3"/>
-    <line x1="38" y1="54" x2="60" y2="59" stroke="#666" stroke-width="0.3"/>
-    <line x1="50" y1="54" x2="63" y2="57" stroke="#666" stroke-width="0.3"/>
-    <!-- Terrain slab base — parallelogram (near-bottom to far-top perspective) -->
-    <polygon points="24,49 57,49 63,22 30,22" fill="#7a5822"/>
-    <!-- Front edge of slab -->
-    <polygon points="24,49 57,49 57,54 24,54" fill="#3a2008"/>
-    <!-- Terrain surface — golden highlight lumps -->
-    <polygon points="35,44 39,30 46,26 43,40" fill="#c88a28"/>
-    <polygon points="43,42 47,32 53,28 51,38" fill="#d49a32"/>
-    <polygon points="31,42 34,33 40,30 37,40" fill="#b07820"/>
-    <polygon points="50,40 54,28 60,26 57,36" fill="#c08828"/>
-    <polygon points="41,46 45,40 50,38 47,44" fill="#c89030"/>
-    <polygon points="33,46 36,41 41,39 38,44" fill="#b07820"/>
-    <!-- Shadow patches in the valleys -->
-    <polygon points="37,43 41,36 45,35 42,42" fill="#2a1404" opacity="0.6"/>
-    <polygon points="49,41 52,33 56,31 53,39" fill="#2a1404" opacity="0.5"/>
-    <polygon points="31,45 33,40 37,38 35,44" fill="#2a1404" opacity="0.45"/>
-    <!-- Highlight ridge lines across the terrain -->
-    <path d="M33,39 C37,34 42,30 47,29 C52,28 57,27 62,24" fill="none" stroke="#f0d070" stroke-width="0.7" opacity="0.55"/>
-    <path d="M33,45 C38,42 44,40 49,39" fill="none" stroke="#e0b850" stroke-width="0.6" opacity="0.4"/>
-    <!-- Nav cube (top-right corner, like real app) -->
-    <rect x="55" y="11" width="8" height="7" rx="1" fill="#d0d0d0" opacity="0.85"/>
-    <text x="59" y="15.5" text-anchor="middle" font-size="2.5" fill="#333" font-family="sans-serif" font-weight="bold">TOP</text>
-    <!-- Axis indicators: Z=blue up, X=red right, Y=green diagonal -->
-    <line x1="59" y1="46" x2="59" y2="41" stroke="#3366ff" stroke-width="0.8"/>
-    <line x1="59" y1="46" x2="63" y2="46" stroke="#e03030" stroke-width="0.8"/>
-    <line x1="59" y1="46" x2="56" y2="49" stroke="#28c940" stroke-width="0.8"/>
+    <!-- 3D viewport: white background with grid -->
+    <rect x="21" y="9" width="43" height="55" fill="#ffffff"/>
+    <rect x="21" y="57" width="43" height="7" rx="4" fill="#ffffff"/>
+    <!-- Isometric grid lines (perspective view) -->
+    <!-- Horizontal grid lines (rows going into perspective) -->
+    <line x1="22" y1="55" x2="63" y2="55" stroke="#d8d8d8" stroke-width="0.5"/>
+    <line x1="22" y1="50" x2="63" y2="50" stroke="#d8d8d8" stroke-width="0.4"/>
+    <line x1="22" y1="45" x2="63" y2="45" stroke="#d8d8d8" stroke-width="0.4"/>
+    <line x1="22" y1="40" x2="63" y2="40" stroke="#d8d8d8" stroke-width="0.4"/>
+    <!-- Vertical grid lines (columns) -->
+    <line x1="27" y1="40" x2="27" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
+    <line x1="33" y1="40" x2="33" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
+    <line x1="39" y1="40" x2="39" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
+    <line x1="45" y1="40" x2="45" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
+    <line x1="51" y1="40" x2="51" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
+    <line x1="57" y1="40" x2="57" y2="56" stroke="#d8d8d8" stroke-width="0.4"/>
+    <!-- Wavy terrain surface — ochre/golden fill polygons -->
+    <!-- Bottom row (flat base) -->
+    <polygon points="22,55 27,55 27,52 22,52" fill="#c8940a" opacity="0.7"/>
+    <polygon points="27,55 33,55 33,50 27,52" fill="#d4a020" opacity="0.8"/>
+    <polygon points="33,55 39,55 39,51 33,50" fill="#b87c08" opacity="0.8"/>
+    <polygon points="39,55 45,55 45,52 39,51" fill="#d4a020" opacity="0.8"/>
+    <polygon points="45,55 51,55 51,54 45,52" fill="#c8940a" opacity="0.7"/>
+    <polygon points="51,55 57,55 57,53 51,54" fill="#b87c08" opacity="0.7"/>
+    <polygon points="57,55 63,55 63,54 57,53" fill="#c8940a" opacity="0.6"/>
+    <!-- Middle row — hills -->
+    <polygon points="22,52 27,52 27,44 22,45" fill="#d4a020" opacity="0.85"/>
+    <polygon points="27,52 33,50 33,40 27,44" fill="#e8b830" opacity="0.9"/>
+    <polygon points="33,50 39,51 39,43 33,40" fill="#c8940a" opacity="0.85"/>
+    <polygon points="39,51 45,52 45,42 39,43" fill="#e8c040" opacity="0.9"/>
+    <polygon points="45,52 51,54 51,44 45,42" fill="#d4a020" opacity="0.85"/>
+    <polygon points="51,54 57,53 57,45 51,44" fill="#c08010" opacity="0.8"/>
+    <polygon points="57,53 63,54 63,46 57,45" fill="#d4a020" opacity="0.8"/>
+    <!-- Top row — peaks -->
+    <polygon points="22,45 27,44 27,36 22,38" fill="#e8c040" opacity="0.9"/>
+    <polygon points="27,44 33,40 33,28 27,36" fill="#f0d060" opacity="0.95"/>
+    <polygon points="33,40 39,43 39,30 33,28" fill="#d4a020" opacity="0.9"/>
+    <polygon points="39,43 45,42 45,26 39,30" fill="#f0d060" opacity="0.95"/>
+    <polygon points="45,42 51,44 51,35 45,26" fill="#e0b020" opacity="0.9"/>
+    <polygon points="51,44 57,45 57,36 51,35" fill="#c8940a" opacity="0.85"/>
+    <polygon points="57,45 63,46 63,37 57,36" fill="#d4a020" opacity="0.85"/>
+    <!-- Darker shadow on steep faces -->
+    <polygon points="27,36 33,28 33,40 27,44" fill="#7a5000" opacity="0.25"/>
+    <polygon points="39,30 45,26 45,42 39,43" fill="#7a5000" opacity="0.2"/>
+    <!-- Highlight ridge lines across peaks -->
+    <path d="M23,37 C28,27 33,24 39,25 C45,21 50,30 57,33 C60,34 62,35 63,36" fill="none" stroke="#f8e080" stroke-width="0.8" opacity="0.7"/>
+    <!-- Axis labels -->
+    <text x="63" y="58" text-anchor="end" font-size="2.5" fill="#e03030" font-family="sans-serif" font-weight="bold">X</text>
+    <text x="23" y="11.5" font-size="2.5" fill="#2266ee" font-family="sans-serif" font-weight="bold">Z</text>
+    <text x="22" y="58" font-size="2.5" fill="#28a040" font-family="sans-serif" font-weight="bold">Y</text>
+    <!-- Axis tick marks -->
+    <line x1="22" y1="56" x2="63" y2="56" stroke="#bbb" stroke-width="0.6"/>
+    <line x1="22" y1="10" x2="22" y2="57" stroke="#bbb" stroke-width="0.6"/>
   </svg>`,
 
   // Left panel (tools + sliders) + white canvas with symmetric SVG path shape
@@ -557,7 +592,7 @@ Fred.ICONS = {
     <text x="32" y="61.5" text-anchor="middle" font-size="3.5" fill="#fff" font-family="sans-serif">Lancer le quiz ›</text>
   </svg>`,
 
-  // 3D Outline System: left color toolbar + grid canvas with drawn colored strokes
+  // 3D Outline System: app window with accurate bent-ribbon art from exported SVG reference
   "mathieuconnery": `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
     <rect width="64" height="64" rx="4" fill="#fff"/>
     <rect width="64" height="9" rx="4" fill="#f8f8f8"/>
@@ -576,22 +611,15 @@ Fred.ICONS = {
     <!-- Left toolbar strip -->
     <rect x="0" y="9" width="13" height="55" fill="#fff" stroke="#f0f0f0" stroke-width="0.5"/>
     <rect x="0" y="57" width="13" height="7" rx="4" fill="#fff"/>
-    <!-- Arrow/select tool (inactive) -->
     <rect x="1" y="10" width="11" height="6" rx="1.5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="0.4"/>
     <text x="6.5" y="15" text-anchor="middle" font-size="4.5" fill="#666">↖</text>
-    <!-- Line tool — ACTIVE (blue highlight, matching screenshot) -->
     <rect x="1" y="17" width="11" height="6" rx="1.5" fill="#3a7ee8"/>
     <text x="6.5" y="22" text-anchor="middle" font-size="5" fill="#fff">−</text>
-    <!-- Curve tool -->
     <rect x="1" y="24" width="11" height="6" rx="1.5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="0.4"/>
     <text x="6.5" y="29" text-anchor="middle" font-size="4.5" fill="#666">↩</text>
-    <!-- Grid toggle -->
     <rect x="1" y="31" width="11" height="5" rx="1.5" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="0.4"/>
     <text x="6.5" y="35.5" text-anchor="middle" font-size="4" fill="#666">▦</text>
-    <!-- Color swatches — circles matching actual app -->
-    <rect x="2" y="38" width="9" height="4" rx="2">
-      <title>gradient</title>
-    </rect>
+    <!-- Color swatches -->
     <rect x="2" y="38" width="3" height="4" rx="1.5" fill="#e84040"/>
     <rect x="4.5" y="38" width="3" height="4" fill="#3a80e8"/>
     <rect x="7" y="38" width="4" height="4" rx="1.5" fill="#e8c020"/>
@@ -610,21 +638,25 @@ Fred.ICONS = {
     <line x1="40" y1="9" x2="40" y2="64" stroke="#eee" stroke-width="0.5"/>
     <line x1="49" y1="9" x2="49" y2="64" stroke="#eee" stroke-width="0.5"/>
     <line x1="58" y1="9" x2="58" y2="64" stroke="#eee" stroke-width="0.5"/>
-    <!-- 3D extruded beams — multicolor vivid theme (blue→red per segment), exact app output -->
-    <!-- Blue beam \ (top-left to bottom-right): shadow face first, then bright top face -->
-    <polygon points="15,15 13,18 56,58 58,55" fill="#0c1e6a"/>
-    <polygon points="15,15 19,11 62,52 58,55" fill="#3a7ee8"/>
-    <!-- Start diamond tip (blue) -->
-    <polygon points="15,15 19,11 17,9" fill="#3a7ee8"/>
-    <!-- End diamond tip (blue) -->
-    <polygon points="58,55 62,52 64,56" fill="#3a7ee8"/>
-    <!-- Red beam / (top-right to bottom-left): shadow face first, then bright top face -->
-    <polygon points="62,15 64,18 21,58 19,55" fill="#6a0c0c"/>
-    <polygon points="62,15 58,11 15,52 19,55" fill="#e84040"/>
-    <!-- Start diamond tip (red) -->
-    <polygon points="62,15 58,11 60,9" fill="#e84040"/>
-    <!-- End diamond tip (red) -->
-    <polygon points="19,55 15,52 13,56" fill="#e84040"/>
+    <!--
+      Bent ribbon — faithfully scaled from the actual exported SVG reference
+      (3d-outline_full_color_path_001.svg, 207×137 canvas).
+      Source bounding box x:33.5→182.4, y:24→112.5.
+      Scale = 0.309, offset x+5.65 y+15.88
+      Segment 1 goes top-left → centre-bottom; segment 2 centre-bottom → top-right.
+    -->
+    <!-- p_0  red top face (segment 1) -->
+    <polygon points="18.6,25.9 18.6,23.3 41,45.7 40.9,48.2" fill="#ec1f27"/>
+    <!-- p_1  blue side face (segment 1) -->
+    <polygon points="18.6,25.9 16,25.9 40.7,50.6 40.9,48.2" fill="#1034A6"/>
+    <!-- p_2  olive start cap -->
+    <polygon points="18.6,23.3 16,25.9 18.6,25.9" fill="#837e53"/>
+    <!-- p_3  yellow top face (segment 2) -->
+    <polygon points="40.9,48.2 41,45.7 59.7,30.7 59.4,33.3" fill="#f5c800"/>
+    <!-- p_4  black side face (segment 2) -->
+    <polygon points="40.9,48.2 40.7,50.6 62,33.6 59.4,33.3" fill="#090700"/>
+    <!-- p_5  red end cap -->
+    <polygon points="62,33.6 59.7,30.7 59.4,33.3" fill="#ec1f27"/>
   </svg>`,
 };
 

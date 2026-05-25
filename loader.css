@@ -1,17 +1,21 @@
 :root {
-  --bg:              #1a1a1a;
-  --bg-sidebar:      #232323;
-  --bg-hover:        #2e2e2e;
-  --bg-active:       #3a3a3a;
-  --fg:              #e8e8e8;
-  --fg-dim:          #888;
-  --accent:          #6cb6ff;
-  --border:          #333;
+  --bg:              #1c1c1c;
+  --bg-sidebar:      #2b2b2b;
+  --bg-hover:        rgba(255, 255, 255, 0.06);
+  --bg-active:       rgba(255, 255, 255, 0.09);
+  --fg:              #ffffff;
+  --fg-dim:          rgba(255, 255, 255, 0.55);
+  --accent:          #0078D4;
+  --accent-hover:    #106ebe;
+  --border:          rgba(255, 255, 255, 0.08);
+  --border-strong:   rgba(255, 255, 255, 0.18);
   --sidebar-w:       240px;
-  --sidebar-w-ico:   56px;   /* icon-only strip */
+  --sidebar-w-ico:   52px;
   --mob-topbar-h:    48px;
   --ease-sidebar:    250ms cubic-bezier(0.4, 0, 0.2, 1);
   --ease-grid:       360ms cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-sm:       4px;
+  --radius-md:       8px;
 }
 
 * { box-sizing: border-box; }
@@ -24,7 +28,7 @@ html, body {
   height: 100%;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  font-family: 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
   font-size: 14px;
 }
 
@@ -34,68 +38,75 @@ body {
 }
 
 /* ================================================================
-   DESKTOP SIDEBAR
+   DESKTOP SIDEBAR  — Win11 Navigation Pane
    ================================================================ */
 
 #sidebar {
   width: var(--sidebar-w);
   flex-shrink: 0;
   background: var(--bg-sidebar);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: width var(--ease-sidebar), border-right-color var(--ease-sidebar);
+  transition: width var(--ease-sidebar);
 }
 
-/* Icon-strip: sidebar shrinks to just icons, never fully hides on desktop */
+/* Icon-strip: sidebar shrinks to just icons on desktop */
 body.sidebar-collapsed #sidebar {
   width: var(--sidebar-w-ico);
 }
 
-/* Collapse / expand toggle — lives in the brand header */
+/* Collapse / expand toggle */
 #sidebar-collapse {
   position: absolute;
-  top: 8px; right: 8px;
-  width: 22px; height: 22px;
+  top: 10px; right: 10px;
+  width: 24px; height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   color: var(--fg-dim);
-  border: 1px solid transparent;
-  border-radius: 4px;
-  font-size: 13px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
   line-height: 1;
   cursor: pointer;
   padding: 0;
-  transition: color 150ms, border-color 150ms;
+  transition: background 120ms, color 120ms;
   z-index: 10;
   flex-shrink: 0;
 }
-#sidebar-collapse:hover { color: var(--fg); border-color: var(--border); }
+#sidebar-collapse:hover {
+  background: var(--bg-hover);
+  color: var(--fg);
+}
 
-/* Floating hamburger no longer needed — sidebar is always visible on desktop */
+/* Floating hamburger not needed on desktop */
 #sidebar-open { display: none; }
 
 /* Brand */
 #brand {
   position: relative;
-  padding: 12px 14px;
+  padding: 14px 14px 10px;
   border-bottom: 1px solid var(--border);
   overflow: hidden;
   white-space: nowrap;
+  min-height: 52px;
 }
 
 #brand h1 {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
+  letter-spacing: -0.2px;
   transition: opacity var(--ease-sidebar);
 }
 
 #project-name {
-  margin-top: 4px;
+  margin-top: 2px;
   font-size: 12px;
   color: var(--fg-dim);
   cursor: pointer;
@@ -114,17 +125,26 @@ body.sidebar-collapsed #project-name { opacity: 0; }
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 8px 0;
+  padding: 6px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+#app-list::-webkit-scrollbar { width: 4px; }
+#app-list::-webkit-scrollbar-track { background: transparent; }
+#app-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
 }
 
 .app-group {
-  padding: 8px 14px 4px;
+  padding: 8px 10px 4px;
   font-size: 10px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--fg-dim);
   white-space: nowrap;
   overflow: hidden;
+  font-weight: 500;
   transition: opacity var(--ease-sidebar), max-height var(--ease-sidebar), padding var(--ease-sidebar);
   max-height: 40px;
 }
@@ -138,19 +158,37 @@ body.sidebar-collapsed .app-group {
 .app-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
+  gap: 10px;
+  padding: 6px 10px;
   cursor: pointer;
   user-select: none;
   min-width: 0;
+  border-radius: var(--radius-sm);
+  position: relative;
   transition: background 120ms, padding var(--ease-sidebar), justify-content var(--ease-sidebar);
 }
 .app-item:hover { background: var(--bg-hover); }
 .app-item.active { background: var(--bg-active); }
 
+/* Win11 accent left-bar for active item */
+.app-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  bottom: 25%;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+}
+
 body.sidebar-collapsed .app-item {
   padding: 6px 0;
   justify-content: center;
+}
+body.sidebar-collapsed .app-item.active::before {
+  top: 20%;
+  bottom: 20%;
 }
 
 /* SVG icon wrapper */
@@ -161,11 +199,13 @@ body.sidebar-collapsed .app-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 .app-item .icon svg {
   width: 28px;
   height: 28px;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   display: block;
 }
 
@@ -176,6 +216,7 @@ body.sidebar-collapsed .app-item {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 13px;
   transition: opacity var(--ease-sidebar), max-width var(--ease-sidebar);
   max-width: 180px;
 }
@@ -195,7 +236,7 @@ body.sidebar-collapsed .app-item .wip { opacity: 0; max-width: 0; overflow: hidd
 /* Sidebar footer */
 #sidebar-footer {
   border-top: 1px solid var(--border);
-  padding: 8px;
+  padding: 8px 6px;
   display: flex;
   gap: 4px;
   overflow: hidden;
@@ -206,17 +247,22 @@ body.sidebar-collapsed .app-item .wip { opacity: 0; max-width: 0; overflow: hidd
   background: transparent;
   border: 1px solid var(--border);
   color: var(--fg-dim);
-  padding: 4px 6px;
+  padding: 5px 6px;
   font-size: 11px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
-  transition: color 120ms, border-color 120ms, opacity var(--ease-sidebar),
-              max-width var(--ease-sidebar), padding var(--ease-sidebar),
-              flex var(--ease-sidebar);
+  font-family: inherit;
+  transition: background 120ms, color 120ms, border-color 120ms,
+              opacity var(--ease-sidebar), max-width var(--ease-sidebar),
+              padding var(--ease-sidebar), flex var(--ease-sidebar);
 }
-#sidebar-footer button:hover { color: var(--fg); border-color: var(--fg-dim); }
+#sidebar-footer button:hover {
+  background: var(--bg-hover);
+  color: var(--fg);
+  border-color: var(--border-strong);
+}
 
 /* In icon-strip, hide all footer buttons except setup */
 body.sidebar-collapsed #sidebar-footer button:not(#open-setup) {
@@ -237,7 +283,7 @@ body.sidebar-collapsed #open-setup {
 #stage {
   flex: 1;
   position: relative;
-  background: #111;
+  background: #161616;
 }
 
 #app-frame {
@@ -258,7 +304,13 @@ body.sidebar-collapsed #open-setup {
   padding: 40px;
   color: var(--fg-dim);
 }
-#welcome h2 { font-weight: 400; font-size: 22px; color: var(--fg); margin: 0 0 12px; }
+#welcome h2 {
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--fg);
+  margin: 0 0 10px;
+  letter-spacing: -0.3px;
+}
 #welcome strong { color: var(--fg); }
 
 /* ================================================================
@@ -271,40 +323,57 @@ body.sidebar-collapsed #open-setup {
   overflow-y: auto;
   background: var(--bg);
   color: var(--fg);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
 #setup-header {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 24px 8px;
+  padding: 18px 24px 12px;
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
 }
 #setup-header h2 { margin: 0; font-size: 18px; font-weight: 600; flex-shrink: 0; }
 #setup-status   { flex: 1; font-size: 12px; color: var(--fg-dim); }
 #setup-close {
-  background: transparent; border: 1px solid var(--border); color: var(--fg);
-  padding: 4px 12px; border-radius: 3px; cursor: pointer; font-size: 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 5px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  transition: background 120ms, border-color 120ms;
 }
-#setup-close:hover { border-color: var(--fg-dim); }
+#setup-close:hover { background: var(--bg-hover); border-color: var(--border-strong); }
 
-.setup-help  { margin: 12px 24px; font-size: 12px; color: var(--fg-dim); max-width: 640px; }
+.setup-help  { margin: 12px 24px; font-size: 12px; color: var(--fg-dim); max-width: 640px; line-height: 1.5; }
 #setup-list  { padding: 0 24px 24px; }
 
 .setup-group {
-  padding: 12px 0 4px;
-  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--fg-dim); border-bottom: 1px solid var(--border);
+  padding: 14px 0 6px;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
 }
 
-/* 6-col grid (checkbox was removed) */
+/* 6-col grid */
 .setup-row {
   display: grid;
   grid-template-columns: 24px 1.2fr 2fr 60px 90px 70px;
   gap: 8px;
   align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px solid #2a2a2a;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   font-size: 13px;
 }
 
@@ -312,37 +381,85 @@ body.sidebar-collapsed #open-setup {
 .setup-row .name-cell input,
 .setup-row .url-cell  input,
 .setup-row .group-cell input {
-  width: 100%; background: var(--bg-sidebar);
-  border: 1px solid var(--border); color: var(--fg);
-  padding: 3px 6px; font: inherit; border-radius: 3px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 4px 8px;
+  font: inherit;
+  border-radius: var(--radius-sm);
+  transition: border-color 120ms, background 120ms;
 }
 .setup-row .icon-cell input { text-align: center; }
+.setup-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+}
 
-.setup-row .badge { font-size: 10px; padding: 2px 6px; border-radius: 9px; color: var(--fg-dim); text-align: center; }
-.setup-row .badge.local  { background: #1c3a1c; color: #8cd08c; }
-.setup-row .badge.remote { background: #2a2a3a; color: #8c9cd0; }
+.setup-row .badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  color: var(--fg-dim);
+  text-align: center;
+}
+.setup-row .badge.local  { background: rgba(40, 120, 40, 0.3);  color: #8cd08c; }
+.setup-row .badge.remote { background: rgba(60, 80, 150, 0.3);  color: #8c9cd0; }
 
 .setup-row .delete {
-  background: transparent; border: 1px solid var(--border);
-  color: var(--fg-dim); padding: 3px 8px; font-size: 11px;
-  border-radius: 3px; cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg-dim);
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 120ms, border-color 120ms, color 120ms;
 }
-.setup-row .delete:hover { border-color: #d06c6c; color: #d06c6c; }
+.setup-row .delete:hover {
+  border-color: #c42b1c;
+  color: #c42b1c;
+  background: rgba(196, 43, 28, 0.1);
+}
 
 #setup-footer {
   position: sticky; bottom: 0;
-  background: var(--bg); border-top: 1px solid var(--border);
-  padding: 12px 24px; display: flex; gap: 10px; align-items: center;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 #setup-footer button {
-  background: var(--bg-sidebar); border: 1px solid var(--border);
-  color: var(--fg); padding: 6px 14px; font-size: 12px; border-radius: 3px; cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 7px 16px;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 120ms, border-color 120ms;
 }
-#setup-footer button:hover { border-color: var(--fg-dim); }
-#setup-save  { background: #2a4a6a !important; border-color: #3a5a7a !important; }
-#setup-save:hover { background: #345580 !important; }
-#setup-dirty { margin-left: auto; font-size: 12px; color: #d0a86c; }
-.setup-row.add-new { background: rgba(108, 182, 255, 0.04); }
+#setup-footer button:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: var(--border-strong);
+}
+#setup-save {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+#setup-save:hover {
+  background: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+#setup-dirty { margin-left: auto; font-size: 12px; color: #d08030; }
+.setup-row.add-new { background: rgba(0, 120, 212, 0.04); }
 
 /* ================================================================
    MOBILE ELEMENTS (hidden on desktop)
@@ -357,13 +474,13 @@ body.sidebar-collapsed #open-setup {
 
 @media (max-width: 768px) {
 
-  /* Desktop sidebar + floating handle gone */
+  /* Desktop sidebar gone on mobile */
   #sidebar, #sidebar-open { display: none !important; }
 
   /* Stage = full screen */
   #stage { width: 100%; height: 100%; }
 
-  /* App frame sits below the topbar — explicit height avoids iframe collapse on mobile */
+  /* App frame sits below the topbar */
   #app-frame {
     position: fixed;
     top: var(--mob-topbar-h); left: 0; right: 0; bottom: 0;
@@ -383,12 +500,13 @@ body.sidebar-collapsed #open-setup {
     top: 0; left: 0; right: 0;
     height: var(--mob-topbar-h);
     background: var(--bg-sidebar);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid var(--border);
     z-index: 200;
     padding: 0 10px;
     gap: 10px;
     align-items: center;
-    /* shown by body.mobile-app-open below */
   }
 
   body.mobile-app-open #mobile-topbar { display: flex; }
@@ -397,34 +515,47 @@ body.sidebar-collapsed #open-setup {
     width: 36px; height: 36px;
     background: transparent;
     border: 1px solid var(--border);
-    color: var(--fg); border-radius: 6px;
-    font-size: 19px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
+    color: var(--fg);
+    border-radius: var(--radius-md);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    transition: background 120ms, border-color 120ms;
   }
-  #mobile-back:hover { background: var(--bg-hover); border-color: var(--fg-dim); }
+  #mobile-back:hover { background: var(--bg-hover); border-color: var(--border-strong); }
 
   #mobile-appname {
     flex: 1;
-    font-size: 15px; font-weight: 600;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   #mobile-setup-btn {
     width: 36px; height: 36px;
     background: transparent;
     border: 1px solid var(--border);
-    color: var(--fg-dim); border-radius: 6px;
-    font-size: 18px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
+    color: var(--fg-dim);
+    border-radius: var(--radius-md);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    transition: background 120ms, border-color 120ms;
   }
-  #mobile-setup-btn:hover { background: var(--bg-hover); border-color: var(--fg-dim); }
+  #mobile-setup-btn:hover { background: var(--bg-hover); border-color: var(--border-strong); }
 
   /* ── Mobile app grid ────────────────────────────────────────── */
   #mobile-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);   /* 2-col: more room per card */
+    grid-template-columns: repeat(2, 1fr);
     position: fixed;
     inset: 0;
     z-index: 100;
@@ -433,9 +564,10 @@ body.sidebar-collapsed #open-setup {
     padding: 16px 8px 40px;
     align-content: start;
     gap: 4px;
-    /* slide + fade transition */
     transition: transform var(--ease-grid), opacity var(--ease-grid);
     will-change: transform, opacity;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
   }
 
   /* When an app is open, slide the grid down off-screen */
@@ -455,32 +587,43 @@ body.sidebar-collapsed #open-setup {
   }
   #mobile-grid-header h2 {
     margin: 0;
-    font-size: 26px; font-weight: 700; color: var(--fg);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--fg);
+    letter-spacing: -0.5px;
   }
   #mobile-grid-setup {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--fg-dim);
-    padding: 6px 16px; border-radius: 6px; font-size: 13px; cursor: pointer;
+    padding: 6px 16px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 120ms, border-color 120ms, color 120ms;
   }
-  #mobile-grid-setup:hover { border-color: var(--fg-dim); color: var(--fg); }
+  #mobile-grid-setup:hover { border-color: var(--border-strong); color: var(--fg); }
 
   /* Group label spans full width */
   .mobile-grid-group {
     grid-column: 1 / -1;
-    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
     color: var(--fg-dim);
     padding: 16px 6px 6px;
+    font-weight: 500;
   }
 
-  /* App tile — tight padding, max icon size */
+  /* App tile */
   .mobile-tile {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
     padding: 8px 4px 10px;
-    border-radius: 16px;
+    border-radius: var(--radius-md);
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
@@ -491,7 +634,8 @@ body.sidebar-collapsed #open-setup {
 
   .mobile-tile .tile-icon { width: 120px; height: 120px; }
   .mobile-tile .tile-icon svg {
-    width: 120px; height: 120px;
+    width: 120px;
+    height: 120px;
     border-radius: 22px;
     display: block;
   }
