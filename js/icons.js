@@ -68,27 +68,39 @@ Fred.ICONS = {
     <text x="2" y="49" font-size="2.3" fill="#555" font-family="sans-serif">▶ SEED</text>
     <text x="2" y="53" font-size="2.3" fill="#555" font-family="sans-serif">▶ SKELETON</text>
     <text x="2" y="57" font-size="2.3" fill="#555" font-family="sans-serif">▶ FILTER</text>
-    <!-- Black 3D viewport -->
-    <rect x="21" y="9" width="43" height="55" fill="#111"/>
-    <rect x="21" y="57" width="43" height="7" rx="4" fill="#111"/>
-    <!-- 3D spline mesh surface — wavy grid of lines -->
-    <path d="M24,50 C28,44 32,40 36,42 C40,44 44,38 48,36 C52,34 56,38 60,36" fill="none" stroke="#44aaff" stroke-width="0.7" opacity="0.8"/>
-    <path d="M24,44 C28,38 32,34 36,36 C40,38 44,32 48,30 C52,28 56,32 60,30" fill="none" stroke="#44aaff" stroke-width="0.7" opacity="0.8"/>
-    <path d="M24,38 C28,32 32,28 36,30 C40,32 44,26 48,24 C52,22 56,26 60,24" fill="none" stroke="#44aaff" stroke-width="0.7" opacity="0.8"/>
-    <path d="M24,32 C28,28 32,24 36,24 C40,24 44,22 48,20 C52,18 56,20 60,18" fill="none" stroke="#44aaff" stroke-width="0.7" opacity="0.6"/>
-    <!-- Cross-section lines -->
-    <path d="M24,32 C24,38 24,44 24,50" fill="none" stroke="#2266aa" stroke-width="0.5" opacity="0.7"/>
-    <path d="M30,29 C30,36 30,43 30,50" fill="none" stroke="#2266aa" stroke-width="0.5" opacity="0.7"/>
-    <path d="M36,24 C36,30 36,36 36,42" fill="none" stroke="#2266aa" stroke-width="0.5" opacity="0.7"/>
-    <path d="M42,22 C42,28 42,34 42,40" fill="none" stroke="#2266aa" stroke-width="0.5" opacity="0.7"/>
-    <path d="M48,20 C48,26 48,32 48,36" fill="none" stroke="#2266aa" stroke-width="0.5" opacity="0.7"/>
-    <path d="M54,18 C54,24 54,30 54,34" fill="none" stroke="#2266aa" stroke-width="0.5" opacity="0.7"/>
-    <!-- Axis -->
-    <text x="57" y="16" font-size="4" fill="#fff" font-family="sans-serif">TOP</text>
-    <line x1="56" y1="52" x2="62" y2="52" stroke="#ff3333" stroke-width="1"/>
-    <line x1="56" y1="52" x2="56" y2="46" stroke="#33ff33" stroke-width="1"/>
-    <text x="63" y="52.5" font-size="3" fill="#ff3333">X</text>
-    <text x="56" y="45" font-size="3" fill="#33ff33">Y</text>
+    <!-- Gray 3D viewport — matches actual app: perspective terrain slab on gray bg -->
+    <rect x="21" y="9" width="43" height="55" fill="#787878"/>
+    <rect x="21" y="57" width="43" height="7" rx="4" fill="#787878"/>
+    <!-- Grid floor lines -->
+    <line x1="22" y1="54" x2="63" y2="54" stroke="#666" stroke-width="0.4"/>
+    <line x1="26" y1="54" x2="48" y2="59" stroke="#666" stroke-width="0.3"/>
+    <line x1="38" y1="54" x2="60" y2="59" stroke="#666" stroke-width="0.3"/>
+    <line x1="50" y1="54" x2="63" y2="57" stroke="#666" stroke-width="0.3"/>
+    <!-- Terrain slab base — parallelogram (near-bottom to far-top perspective) -->
+    <polygon points="24,49 57,49 63,22 30,22" fill="#7a5822"/>
+    <!-- Front edge of slab -->
+    <polygon points="24,49 57,49 57,54 24,54" fill="#3a2008"/>
+    <!-- Terrain surface — golden highlight lumps -->
+    <polygon points="35,44 39,30 46,26 43,40" fill="#c88a28"/>
+    <polygon points="43,42 47,32 53,28 51,38" fill="#d49a32"/>
+    <polygon points="31,42 34,33 40,30 37,40" fill="#b07820"/>
+    <polygon points="50,40 54,28 60,26 57,36" fill="#c08828"/>
+    <polygon points="41,46 45,40 50,38 47,44" fill="#c89030"/>
+    <polygon points="33,46 36,41 41,39 38,44" fill="#b07820"/>
+    <!-- Shadow patches in the valleys -->
+    <polygon points="37,43 41,36 45,35 42,42" fill="#2a1404" opacity="0.6"/>
+    <polygon points="49,41 52,33 56,31 53,39" fill="#2a1404" opacity="0.5"/>
+    <polygon points="31,45 33,40 37,38 35,44" fill="#2a1404" opacity="0.45"/>
+    <!-- Highlight ridge lines across the terrain -->
+    <path d="M33,39 C37,34 42,30 47,29 C52,28 57,27 62,24" fill="none" stroke="#f0d070" stroke-width="0.7" opacity="0.55"/>
+    <path d="M33,45 C38,42 44,40 49,39" fill="none" stroke="#e0b850" stroke-width="0.6" opacity="0.4"/>
+    <!-- Nav cube (top-right corner, like real app) -->
+    <rect x="55" y="11" width="8" height="7" rx="1" fill="#d0d0d0" opacity="0.85"/>
+    <text x="59" y="15.5" text-anchor="middle" font-size="2.5" fill="#333" font-family="sans-serif" font-weight="bold">TOP</text>
+    <!-- Axis indicators: Z=blue up, X=red right, Y=green diagonal -->
+    <line x1="59" y1="46" x2="59" y2="41" stroke="#3366ff" stroke-width="0.8"/>
+    <line x1="59" y1="46" x2="63" y2="46" stroke="#e03030" stroke-width="0.8"/>
+    <line x1="59" y1="46" x2="56" y2="49" stroke="#28c940" stroke-width="0.8"/>
   </svg>`,
 
   // Left panel (tools + sliders) + white canvas with symmetric SVG path shape
