@@ -610,13 +610,21 @@ Fred.ICONS = {
     <line x1="40" y1="9" x2="40" y2="64" stroke="#eee" stroke-width="0.5"/>
     <line x1="49" y1="9" x2="49" y2="64" stroke="#eee" stroke-width="0.5"/>
     <line x1="58" y1="9" x2="58" y2="64" stroke="#eee" stroke-width="0.5"/>
-    <!-- 3D extruded blue frame — actual app output: thick beveled frame with hollow center -->
-    <!-- Outer blue front face -->
-    <rect x="17" y="13" width="44" height="48" rx="1" fill="#3a7ee8"/>
-    <!-- Dark navy inner depth bevel ring -->
-    <rect x="22" y="18" width="34" height="38" fill="#0c1e6a"/>
-    <!-- White hollow center -->
-    <rect x="28" y="24" width="22" height="26" fill="#fff"/>
+    <!-- 3D extruded beams — multicolor vivid theme (blue→red per segment), exact app output -->
+    <!-- Blue beam \ (top-left to bottom-right): shadow face first, then bright top face -->
+    <polygon points="15,15 13,18 56,58 58,55" fill="#0c1e6a"/>
+    <polygon points="15,15 19,11 62,52 58,55" fill="#3a7ee8"/>
+    <!-- Start diamond tip (blue) -->
+    <polygon points="15,15 19,11 17,9" fill="#3a7ee8"/>
+    <!-- End diamond tip (blue) -->
+    <polygon points="58,55 62,52 64,56" fill="#3a7ee8"/>
+    <!-- Red beam / (top-right to bottom-left): shadow face first, then bright top face -->
+    <polygon points="62,15 64,18 21,58 19,55" fill="#6a0c0c"/>
+    <polygon points="62,15 58,11 15,52 19,55" fill="#e84040"/>
+    <!-- Start diamond tip (red) -->
+    <polygon points="62,15 58,11 60,9" fill="#e84040"/>
+    <!-- End diamond tip (red) -->
+    <polygon points="19,55 15,52 13,56" fill="#e84040"/>
   </svg>`,
 };
 
