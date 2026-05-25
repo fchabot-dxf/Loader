@@ -2,6 +2,18 @@
   "_comment": "Static registry. serve.py merges this with live folder discovery. Entries with absolute URLs work in deployed/file:// mode too. Edit freely — add or remove anything.",
   "apps": [
     {
+      "id": "mathieuconnery",
+      "name": "Mathieuconnery",
+      "icon": "•",
+      "group": "cnc",
+      "description": "Outline system",
+      "url": "https://mathieuconnery.pages.dev/",
+      "localUrl": "/apps/mathieuconnery/index.html",
+      "folder": "mathieuconnery",
+      "entry": "index.html",
+      "local": true
+    },
+    {
       "id": "DDCS-Studio",
       "name": "DDCS Studio",
       "icon": "G",
@@ -121,17 +133,5 @@
       "url": "https://quiz-francais.pages.dev/",
       "local": false
     },
-    {
-      "id": "mathieuconnery",
-      "name": "Mathieuconnery",
-      "icon": "•",
-      "group": "apps",
-      "description": "Outline system",
-      "url": "https://mathieuconnery.pages.dev/",
-      "localUrl": "/apps/mathieuconnery/index.html",
-      "folder": "mathieuconnery",
-      "entry": "index.html",
-      "local": true
-    }
   ]
 }
