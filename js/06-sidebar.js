@@ -82,7 +82,11 @@ Fred.makeSidebarItem = function (app) {
   el.appendChild(name);
 
   if (!Fred.state.editMode) {
-    if (app.local === false) {
+    // "remote" tag only carries meaning during local dev (serve.py), where it
+    // tells you "this app has no source folder on disk, you'll get the deployed
+    // version when you click." On apploader.pages.dev, every app is remote by
+    // definition — the tag would be noise.
+    if (app.local === false && Fred.isLocalDev()) {
       const tag = document.createElement("span");
       tag.className = "wip";
       tag.textContent = "remote";

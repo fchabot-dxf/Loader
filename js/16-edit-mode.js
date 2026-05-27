@@ -6,11 +6,17 @@ Fred.state.editMode     = false;
 Fred.state.editSnapshot = null;   // deep-copy of apps[] used for cancel
 
 // ── Persistence ───────────────────────────────────────────────────────────
-Fred.saveAppsToLocalStorage = function () {
-  localStorage.setItem(
-    Fred.APPS_OVERRIDE_KEY,
-    JSON.stringify({ apps: Fred.state.apps })
-  );
+// Name kept for historical reasons; this now PUTs to the worker first and
+// falls back to localStorage only if the worker is unreachable.
+Fred.saveAppsToLocalStorage = async function () {
+  const apps    = Fred.state.apps;
+  const payload = { apps };
+  try {
+    await Fred.saveAppsToWorker(apps);
+  } catch (e) {
+    console.warn("[loader] worker save failed, kept in localStorage:", e.message);
+    localStorage.setItem(Fred.APPS_OVERRIDE_KEY, JSON.stringify(payload));
+  }
 };
 
 // ── Enter / exit ──────────────────────────────────────────────────────────

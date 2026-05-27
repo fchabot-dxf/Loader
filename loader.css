@@ -9,8 +9,8 @@
   --accent-hover:    #106ebe;
   --border:          rgba(255, 255, 255, 0.08);
   --border-strong:   rgba(255, 255, 255, 0.18);
-  --sidebar-w:       240px;
-  --sidebar-w-ico:   52px;
+  --sidebar-w:       440px;
+  --sidebar-w-ico:   0px;
   --mob-topbar-h:    48px;
   --ease-sidebar:    250ms cubic-bezier(0.4, 0, 0.2, 1);
   --ease-grid:       360ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -54,9 +54,11 @@ body {
   transition: width var(--ease-sidebar);
 }
 
-/* Icon-strip: sidebar shrinks to just icons on desktop */
+/* Collapsed = fully hidden (no icon-strip). The floating #sidebar-open button
+   below lets the user bring it back. */
 body.sidebar-collapsed #sidebar {
-  width: var(--sidebar-w-ico);
+  width: 0;
+  border-right: none;
 }
 
 /* Collapse / expand toggle */
@@ -84,8 +86,42 @@ body.sidebar-collapsed #sidebar {
   color: var(--fg);
 }
 
-/* Floating hamburger not needed on desktop */
-#sidebar-open { display: none; }
+/* Floating "open" tab — slim vertical strip flush to the left edge,
+   only visible when sidebar is collapsed. */
+#sidebar-open {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 48px;
+  display: none;             /* hidden by default; shown when sidebar collapsed */
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-sidebar);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border);
+  border-left: none;
+  color: var(--fg-dim);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  z-index: 50;
+  transition: width 120ms, font-size 120ms, font-weight 120ms;
+}
+#sidebar-open:hover {
+  /* Background/border/color stay the same — only the chevron itself reacts:
+     the tab nudges out, the character gets bigger and heavier-stroked. */
+  width: 20px;
+  font-size: 16px;
+  font-weight: 700;
+}
+body.sidebar-collapsed #sidebar-open { display: flex; }
 
 /* Brand */
 #brand {
@@ -158,12 +194,12 @@ body.sidebar-collapsed .app-group {
 .app-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 10px;
+  gap: 14px;
+  padding: 10px 14px;
   cursor: pointer;
   user-select: none;
   min-width: 0;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   position: relative;
   transition: background 120ms, padding var(--ease-sidebar), justify-content var(--ease-sidebar);
 }
@@ -193,19 +229,19 @@ body.sidebar-collapsed .app-item.active::before {
 
 /* SVG icon wrapper */
 .app-item .icon {
-  width: 28px;
-  height: 28px;
+  width: 96px;
+  height: 96px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
+  border-radius: 12px;
   overflow: hidden;
 }
 .app-item .icon svg {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-sm);
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
   display: block;
 }
 
@@ -216,9 +252,10 @@ body.sidebar-collapsed .app-item.active::before {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 500;
   transition: opacity var(--ease-sidebar), max-width var(--ease-sidebar);
-  max-width: 180px;
+  max-width: 300px;
 }
 body.sidebar-collapsed .app-item .name {
   opacity: 0;

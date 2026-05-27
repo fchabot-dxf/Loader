@@ -17,8 +17,8 @@ Fred.renderSetup = function () {
   const list = document.getElementById("setup-list");
   list.innerHTML = "";
   document.getElementById("setup-status").textContent = Fred.state.hasServer
-    ? "saving to apps.json on disk"
-    : "saving to this browser (no server)";
+    ? "saving to projects-dansemur worker"
+    : "worker unreachable — saving to this browser only";
 
   const groups = new Map();
   for (const app of Fred.state.setupDraft.apps) {

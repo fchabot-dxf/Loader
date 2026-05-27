@@ -21,6 +21,10 @@ Fred.bindControls = function () {
   document.getElementById("sidebar-collapse")
     .addEventListener("click", Fred.toggleSidebarCollapsed);
 
+  // Floating button shown only when sidebar is collapsed — brings it back.
+  const sidebarOpen = document.getElementById("sidebar-open");
+  if (sidebarOpen) sidebarOpen.addEventListener("click", Fred.toggleSidebarCollapsed);
+
   Fred.el.projectName.addEventListener("click", () => {
     if (Fred.state.editMode) return;
     const next = prompt("Project name:", Fred.state.project.name || "");
